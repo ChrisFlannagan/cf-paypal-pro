@@ -9,8 +9,13 @@ function CFPPP( config, $ ){
         template: '#cf-paypal-pro-tmpl',
         data: function () {
             return {
-                apikey: String,
-                secret: String
+                apikey: '',
+                secret: '',
+                sandbox_apikey: '',
+                sandbox_secret: '',
+                classic_username: '',
+                classic_pass: '',
+                classic_signature: ''
             }
         },
         mounted: function () {
@@ -38,6 +43,11 @@ function CFPPP( config, $ ){
                 var self = this;
                 var apikey = this.apikey;
                 var secret = this.secret;
+                var sandbox_apikey = this.sandbox_apikey;
+                var sandbox_secret = this.sandbox_secret;
+                var classic_username = this.classic_username;
+                var classic_pass = this.classic_pass;
+                var classic_signature = this.classic_signature;
                 var $spinner = $( '#cf-paypal-pro-spinner' );
                 var $feedback = $( '#cf-paypal-pro-feedback' );
                 $spinner.show().attr( 'aria-hidden', false );
@@ -50,7 +60,12 @@ function CFPPP( config, $ ){
                     },
                     data: {
                         apikey: apikey,
-                        secret: secret
+                        secret: secret,
+                        sandbox_apikey: sandbox_apikey,
+                        sandbox_secret: sandbox_secret,
+                        classic_username: classic_username,
+                        classic_pass: classic_pass,
+                        classic_signature: classic_signature
                     },
                     complete: function (r) {
                         self.setSettings( r.responseJSON );
@@ -66,6 +81,11 @@ function CFPPP( config, $ ){
             setSettings: function ( settings ) {
                 this.$set( this, 'apikey', settings.apikey );
                 this.$set( this, 'secret', settings.secret );
+                this.$set( this, 'sandbox_apikey', settings.sandbox_apikey );
+                this.$set( this, 'sandbox_secret', settings.sandbox_secret );
+                this.$set( this, 'classic_username', settings.classic_username );
+                this.$set( this, 'classic_pass', settings.classic_pass );
+                this.$set( this, 'classic_signature', settings.classic_signature );
             },
             onSubmit: function () {
                 this.updateSettings();
@@ -74,7 +94,6 @@ function CFPPP( config, $ ){
     });
 
     new Vue({
-        el: '#cf-paypal-pro',
-
+        el: '#cf-paypal-pro'
     });
 }

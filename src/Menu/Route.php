@@ -49,15 +49,40 @@ class Route implements \Caldera_Forms_API_Route {
 	 */
 	public function save_settings( \WP_REST_Request $request ){
 		$status = 200;
-		$secret = $request[ 'secret' ];
+		$secret = $request[ Settings::SECRET ];
 		if( $secret ){
 			$status = 201;
 			Settings::save_secret( $secret );
 		}
-		$apikey = $request[ 'apikey' ];
+		$apikey = $request[ Settings::APIKEY ];
 		if( $apikey ){
 			$status = 201;
 			Settings::save_apikey( $apikey );
+		}
+		$secret = $request[ Settings::SANDBOX_SECRET ];
+		if( $secret ){
+			$status = 201;
+			Settings::save_sandbox_secret( $secret );
+		}
+		$apikey = $request[ Settings::SANDBOX_APIKEY ];
+		if( $apikey ){
+			$status = 201;
+			Settings::save_sandbox_apikey( $apikey );
+		}
+		$username = $request[ Settings::USERNAME ];
+		if( $username ){
+			$status = 201;
+			Settings::save_classic_username( $username );
+		}
+		$pass = $request[ Settings::PASS ];
+		if( $pass ){
+			$status = 201;
+			Settings::save_classic_pass( $pass );
+		}
+		$signature = $request[ Settings::SIGNATURE ];
+		if( $signature ){
+			$status = 201;
+			Settings::save_classic_signature( $signature );
 		}
 		return $this->return_settings( $status );
 	}

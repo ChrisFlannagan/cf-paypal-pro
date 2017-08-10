@@ -108,19 +108,50 @@ class Menu {
 		<script type="text/html" id="cf-paypal-pro-tmpl">
 			<form v-on:submit.prevent="onSubmit" v-cloak>
 				<div id="cf-paypal-pro-feedback"></div>
-
+                <h3>PayPal REST API Credentials</h3>
 				<div class="caldera-config-group">
 					<label for="cf-paypal-pro-api-key">
-						<?php esc_html_e( 'API Key', 'cf-paypal-pro' ); ?>
+						<?php esc_html_e( 'Client ID', 'cf-paypal-pro' ); ?>
 					</label>
-					<input v-model="apikey" id="cf-paypal-pro-api-key"/>
+					<input v-model="<?php echo Settings::APIKEY; ?>" placeholder="<?php _e( 'Your Client ID', 'cf-paypal-pro' ); ?>" id="cf-paypal-pro-api-key"/>
 				</div>
 				<div class="caldera-config-group">
 					<label for="cf-paypal-pro-secret">
-						<?php esc_html_e( 'API Secret', 'cf-paypal-pro' ); ?>
+						<?php esc_html_e( 'Client Secret', 'cf-paypal-pro' ); ?>
 					</label>
-					<input v-model="secret" id="cf-paypal-pro-secret"/>
+					<input v-model="<?php echo Settings::SECRET; ?>" placeholder="<?php _e( 'Your Client Secret', 'cf-paypal-pro' ); ?>" id="cf-paypal-pro-secret"/>
 				</div>
+                <div class="caldera-config-group">
+                    <label for="cf-paypal-pro-sandbox-api-key">
+						<?php esc_html_e( 'Sandbox Client ID', 'cf-paypal-pro' ); ?>
+                    </label>
+                    <input v-model="<?php echo Settings::SANDBOX_APIKEY; ?>" placeholder="<?php _e( 'Your Sandbox Client ID', 'cf-paypal-pro' ); ?>" id="cf-paypal-pro-api-sandbox-key"/>
+                </div>
+                <div class="caldera-config-group">
+                    <label for="cf-paypal-pro-sandbox-secret">
+						<?php esc_html_e( 'Sandbox Client Secret', 'cf-paypal-pro' ); ?>
+                    </label>
+                    <input v-model="<?php echo Settings::SANDBOX_SECRET; ?>" placeholder="<?php _e( 'Your Sandbox Client Secret', 'cf-paypal-pro' ); ?>" id="cf-paypal-pro-sandbox-secret"/>
+                </div>
+                <h3>PayPal Classic API Credentials</h3>
+                <div class="caldera-config-group">
+                    <label for="cf-paypal-pro-classic-username">
+						<?php esc_html_e( 'Username', 'cf-paypal-pro' ); ?>
+                    </label>
+                    <input v-model="<?php echo Settings::USERNAME; ?>" placeholder="<?php _e( 'Your API Username', 'cf-paypal-pro' ); ?>" id="cf-paypal-pro-classic-username"/>
+                </div>
+                <div class="caldera-config-group">
+                    <label for="cf-paypal-pro-classic-pass">
+						<?php esc_html_e( 'Password', 'cf-paypal-pro' ); ?>
+                    </label>
+                    <input v-model="<?php echo Settings::PASS; ?>" placeholder="<?php _e( 'Your API Password', 'cf-paypal-pro' ); ?>" id="cf-paypal-pro-classic-pass"/>
+                </div>
+                <div class="caldera-config-group">
+                    <label for="cf-paypal-pro-classic-signature">
+						<?php esc_html_e( 'Signature', 'cf-paypal-pro' ); ?>
+                    </label>
+                    <input v-model="<?php echo Settings::SIGNATURE; ?>" placeholder="<?php _e( 'Your API Signature', 'cf-paypal-pro' ); ?>" id="cf-paypal-pro-classic-signature"/>
+                </div>
 				<?php submit_button( esc_html__( 'Save' ) ); ?>
 				<div id="cf-paypal-pro-spinner" aria-hidden="true" style="display: none">
 					<img src="<?php echo esc_url( admin_url( 'images/spinner.gif' ) ); ?>"/>

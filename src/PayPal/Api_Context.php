@@ -2,18 +2,42 @@
 
 namespace CF_PayPal_Pro\PayPal;
 
+use CF_PayPal_Pro\Menu\Settings;
+use PayPal\Rest\ApiContext;
+use PayPal\Auth\OAuthTokenCredential;
+
 class Api_Context {
 
-	private $instance;
-	private $api_context;
+	protected static $instance;
+	private $context;
 
-	private function __construct() {
-		$this->api_context = new \PayPal\Rest\ApiContext(
-			new \PayPal\Auth\OAuthTokenCredential(
-				'AYSq3RDGsmBLJE-otTkBtM-jBRd1TCQwFf9RGfwddNXWz0uFU9ztymylOhRS',     // ClientID
-				'EGnHDxD_qRPdaLdZz8iCr8N7_MzF-YHPTkjs6NKYQvQSBngp4PTTVWkPZRbL'      // ClientSecret
+	protected function __construct() {
+		$this->context = new ApiContext(
+			new OAuthTokenCredential(
+				Settings::get_sandbox_apikey(), // ClientID
+				Settings::get_sandbox_apikey()  // ClientSecret
 			)
 		);
+	}
+
+	public function set_live() {
+		$this->context = new ApiContext(
+			new OAuthTokenCredential(
+				Settings::get_apikey(), // ClientID
+				Settings::get_apikey()  // ClientSecret
+			)
+		);
+	}
+
+	public function get_context() {
+		return $this->context;
+	}
+
+	public static function instance() {
+		if ( ! self::$instance ) {
+			self::$instance = new self;
+		}
+		return self::$instance;
 	}
 
 }
