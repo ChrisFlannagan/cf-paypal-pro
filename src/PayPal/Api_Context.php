@@ -15,18 +15,30 @@ class Api_Context {
 		$this->context = new ApiContext(
 			new OAuthTokenCredential(
 				Settings::get_sandbox_apikey(), // ClientID
-				Settings::get_sandbox_apikey()  // ClientSecret
+				Settings::get_sandbox_secret()  // ClientSecret
 			)
 		);
+		$this->set_config( 'sandbox' );
 	}
 
 	public function set_live() {
 		$this->context = new ApiContext(
 			new OAuthTokenCredential(
 				Settings::get_apikey(), // ClientID
-				Settings::get_apikey()  // ClientSecret
+				Settings::get_secret()  // ClientSecret
 			)
 		);
+		$this->set_config( 'live' );
+	}
+
+	public function set_config( $mode ) {
+		if ( is_a( $this->context, '\PayPal\Rest\ApiContext' ) ) {
+			$this->context->setConfig(
+				[
+					'mode' => $mode,
+				]
+			);
+		}
 	}
 
 	public function get_context() {

@@ -101,8 +101,16 @@ class Base extends \Caldera_Forms_Processor_Payment implements \Caldera_Forms_Pr
 		return $transdata[ $proccesid ]['meta'];
 	}
 
+	/**
+	 * @param array $config
+	 * @param array $form
+	 * @param string $proccesid
+	 * @param \Caldera_Forms_Processor_Get_Data $data_object
+	 *
+	 * @return \Caldera_Forms_Processor_Get_Data
+	 */
 	public function do_payment( array $config, array $form, $proccesid, \Caldera_Forms_Processor_Get_Data $data_object ) {
-		if( 'rest' == $data_object->get_value( 'cf-braintree-restOrClassic' ) ){
+		if( 'rest' == $data_object->get_value( 'cf-paypal-pro-restOrClassic' ) ){
 			return Process_Rest::do_payment( $config, $form, $proccesid, $data_object );
 		} else {
 			return Process_Classic::do_payment( $config, $form, $proccesid, $data_object );

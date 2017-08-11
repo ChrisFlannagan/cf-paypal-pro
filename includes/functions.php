@@ -17,7 +17,7 @@ function cf_paypal_pro_fields() {
 				'rest' => __( 'REST API', 'cf-paypal-pro' ),
 				'classic'   => __( 'Classic API', 'cf-paypal-pro' ),
 			)
-		),
+		), /** add this when we want to integrate billing
 		array(
 			'id'       => 'cf-paypal-pro-planOrSingle',
 			'label'    => __( 'One time payment or subscription?', 'cf-paypal-pro' ),
@@ -27,15 +27,10 @@ function cf_paypal_pro_fields() {
 				'charge' => __( 'One Time Payment', 'cf-paypal-pro' ),
 				'plan'   => __( 'Subscription Plan', 'cf-paypal-pro' ),
 			)
-		),
+		), **/
 		array(
 			'id'    => 'amount',
 			'label' => __( 'Price', 'cf-paypal-pro' ),
-		),
-		array(
-			'id'    => 'cf-paypal-pro-plan-actual',
-			'type'  => 'hidden',
-			'label' => 'Actual Plan'
 		),
 		array(
 			'id'    => 'cardholderFirstName',
@@ -124,30 +119,20 @@ function cf_ppp_example_form( $forms ) {
 
 }
 
-function cf_ppp_prepare_meta( $result ) {
-	$meta= array();
+/**
+ * @param $transaction \PayPal\Api\Transaction
+ *
+ * @return array
+ */
+function cf_ppp_prepare_meta( $transaction ) {
+	$meta = [];
 
-	if ( is_object( $result ) ) {
+	if ( is_a( $transaction, '\PayPal\Api\Transaction' ) ) {
 
-		$metas = array(
-			'orderID',
-			'amount',
-			'planID',
-			'status',
-			'type',
-			'merchantAccountId',
-			'processorAuthorizationCode'
-
-		);
-
-
-		foreach( $metas as $key ) {
-			if ( array_key_exists( $key, $result->transaction->_attributes) ) {
-				$meta[ $key ] = $result->transaction->__get( $key );
-			}
-
-
-		}
+		$meta = [
+			'Transaction ID' => $transaction->getInvoiceNumber(),
+			'amount' => $transaction->getAmount(),
+		];
 
 		$meta[ 'time' ] = time();
 
