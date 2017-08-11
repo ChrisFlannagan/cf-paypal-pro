@@ -152,6 +152,24 @@ class Menu {
                     </label>
                     <input v-model="<?php echo Settings::SIGNATURE; ?>" placeholder="<?php _e( 'Your API Signature', 'cf-paypal-pro' ); ?>" id="cf-paypal-pro-classic-signature"/>
                 </div>
+                <div class="caldera-config-group">
+                    <label for="cf-paypal-pro-classic-sandbox-username">
+						<?php esc_html_e( 'Sandbox Username', 'cf-paypal-pro' ); ?>
+                    </label>
+                    <input v-model="<?php echo Settings::SANDBOX_USERNAME; ?>" placeholder="<?php _e( 'Your Sandbox API Username', 'cf-paypal-pro' ); ?>" id="cf-paypal-pro-classic-sandbox-username"/>
+                </div>
+                <div class="caldera-config-group">
+                    <label for="cf-paypal-pro-classic-sandbox-pass">
+						<?php esc_html_e( 'Sandbox Password', 'cf-paypal-pro' ); ?>
+                    </label>
+                    <input v-model="<?php echo Settings::SANDBOX_PASS; ?>" placeholder="<?php _e( 'Your Sandbox API Password', 'cf-paypal-pro' ); ?>" id="cf-paypal-pro-classic-sandbox-pass"/>
+                </div>
+                <div class="caldera-config-group">
+                    <label for="cf-paypal-pro-classic-sandbox-signature">
+						<?php esc_html_e( 'Sandbox Signature', 'cf-paypal-pro' ); ?>
+                    </label>
+                    <input v-model="<?php echo Settings::SANDBOX_SIGNATURE; ?>" placeholder="<?php _e( 'Your Sandbox API Signature', 'cf-paypal-pro' ); ?>" id="cf-paypal-pro-classic-sandbox-signature"/>
+                </div>
 				<?php submit_button( esc_html__( 'Save' ) ); ?>
 				<div id="cf-paypal-pro-spinner" aria-hidden="true" style="display: none">
 					<img src="<?php echo esc_url( admin_url( 'images/spinner.gif' ) ); ?>"/>

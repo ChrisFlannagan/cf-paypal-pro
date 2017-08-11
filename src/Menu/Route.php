@@ -59,6 +59,7 @@ class Route implements \Caldera_Forms_API_Route {
 			$status = 201;
 			Settings::save_apikey( $apikey );
 		}
+
 		$secret = $request[ Settings::SANDBOX_SECRET ];
 		if( $secret ){
 			$status = 201;
@@ -69,6 +70,8 @@ class Route implements \Caldera_Forms_API_Route {
 			$status = 201;
 			Settings::save_sandbox_apikey( $apikey );
 		}
+
+
 		$username = $request[ Settings::USERNAME ];
 		if( $username ){
 			$status = 201;
@@ -83,6 +86,22 @@ class Route implements \Caldera_Forms_API_Route {
 		if( $signature ){
 			$status = 201;
 			Settings::save_classic_signature( $signature );
+		}
+
+		$username = $request[ Settings::SANDBOX_USERNAME ];
+		if( $username ){
+			$status = 201;
+			Settings::save_classic_sandbox_username( $username );
+		}
+		$pass = $request[ Settings::SANDBOX_PASS ];
+		if( $pass ){
+			$status = 201;
+			Settings::save_classic_sandbox_pass( $pass );
+		}
+		$signature = $request[ Settings::SANDBOX_SIGNATURE ];
+		if( $signature ){
+			$status = 201;
+			Settings::save_classic_sandbox_signature( $signature );
 		}
 		return $this->return_settings( $status );
 	}

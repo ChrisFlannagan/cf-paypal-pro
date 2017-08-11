@@ -39,9 +39,30 @@ class ComposerStaticInit9238f6f6cfad4d0e05d9cdb4480701fb
     public static $prefixesPsr0 = array (
         'P' => 
         array (
+            'PayPal\\Service' => 
+            array (
+                0 => __DIR__ . '/..' . '/paypal/merchant-sdk-php/lib',
+            ),
+            'PayPal\\PayPalAPI' => 
+            array (
+                0 => __DIR__ . '/..' . '/paypal/merchant-sdk-php/lib',
+            ),
+            'PayPal\\EnhancedDataTypes' => 
+            array (
+                0 => __DIR__ . '/..' . '/paypal/merchant-sdk-php/lib',
+            ),
+            'PayPal\\EBLBaseComponents' => 
+            array (
+                0 => __DIR__ . '/..' . '/paypal/merchant-sdk-php/lib',
+            ),
+            'PayPal\\CoreComponentTypes' => 
+            array (
+                0 => __DIR__ . '/..' . '/paypal/merchant-sdk-php/lib',
+            ),
             'PayPal' => 
             array (
                 0 => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib',
+                1 => __DIR__ . '/..' . '/paypal/sdk-core-php/lib',
             ),
         ),
     );

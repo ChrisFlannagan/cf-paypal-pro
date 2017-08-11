@@ -72,7 +72,6 @@ class Process_Rest {
 
 			if ( 'approved' == $payment->getState() ) {
 				$transdata[ $proccesid ]['meta'] = cf_ppp_prepare_meta( $payment->getTransactions()[0] );
-				do_action( 'cf_paypal_pro_success', $payment, $order_id, $transaction, $config, $form, $proccesid );
 			} else {
 				$data_object->add_error( __( 'Your Card Was Not Approved', 'cf-paypal-pro' ) );
 			}

@@ -8,13 +8,19 @@ namespace CF_PayPal_Pro\Menu;
  */
 class Settings {
 
+	/** PayPal Rest */
 	const APIKEY = 'apikey';
 	const SECRET = 'secret';
 	const SANDBOX_APIKEY = 'sandbox_apikey';
 	const SANDBOX_SECRET = 'sandbox_secret';
+
+	/** PayPal Classic */
 	const USERNAME = 'classic_username';
 	const PASS = 'classic_pass';
 	const SIGNATURE = 'classic_signature';
+	const SANDBOX_USERNAME = 'classic_sandbox_username';
+	const SANDBOX_PASS = 'classic_sandbox_pass';
+	const SANDBOX_SIGNATURE = 'classic_sandbox_signature';
 
 	protected static $key = '_caldera_forms_paypal_pro';
 
@@ -27,6 +33,9 @@ class Settings {
 			self::USERNAME => '',
 			self::PASS => '',
 			self::SIGNATURE => '',
+			self::SANDBOX_USERNAME => '',
+			self::SANDBOX_PASS => '',
+			self::SANDBOX_SIGNATURE => '',
 		);
 	}
 
@@ -97,6 +106,21 @@ class Settings {
 		return $settings[ self::SIGNATURE ];
 	}
 
+	public static function get_classic_sandbox_username(){
+		$settings = self::prepare( get_option( self::$key, array() ) );
+		return $settings[ self::SANDBOX_USERNAME ];
+	}
+
+	public static function get_classic_sandbox_pass(){
+		$settings = self::get_settings();
+		return $settings[ self::SANDBOX_PASS ];
+	}
+
+	public static function get_classic_sandbox_signature(){
+		$settings = self::get_settings();
+		return $settings[ self::SANDBOX_SIGNATURE ];
+	}
+
 	public static function save_classic_username( $username ){
 		$settings = self::get_settings();
 		$settings[ self::USERNAME ] = strip_tags( $username );
@@ -114,6 +138,26 @@ class Settings {
 		$settings[ self::SIGNATURE ] = strip_tags( $signature );
 		update_option( self::$key, $settings );
 	}
+
+	public static function save_classic_sandbox_username( $username ){
+		$settings = self::get_settings();
+		$settings[ self::SANDBOX_USERNAME ] = strip_tags( $username );
+		update_option( self::$key, $settings );
+	}
+
+	public static function save_classic_sandbox_pass( $pass ){
+		$settings = self::get_settings();
+		$settings[ self::SANDBOX_PASS ] = strip_tags( $pass );
+		update_option( self::$key, $settings );
+	}
+
+	public static function save_classic_sandbox_signature( $signature ){
+		$settings = self::get_settings();
+		$settings[ self::SANDBOX_SIGNATURE ] = strip_tags( $signature );
+		update_option( self::$key, $settings );
+	}
+
+	/** General settings methods */
 
 	public static function get_settings(){
 		return self::prepare( get_option( self::$key, array() ) );
