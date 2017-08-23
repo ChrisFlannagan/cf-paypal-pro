@@ -1,18 +1,18 @@
 <?php
 /**
  * Plugin Name: PayPal Pro for Caldera Forms
- * Plugin URI:  https://CalderaWP.com/downloads/paypal-pro-for-caldera-forms
+ * Plugin URI:  https://CalderaForms.com/downloads/paypal-pro-for-caldera-forms
  * Description: PayPal Pro for Caldera Forms
  * Version: 1.0
- * Author:      Caldera Labs
- * Author URI:  https://Calderaforms.com
+ * Author:      Chris Flanagan
+ * Author URI:  https://whoischris.com
  * License:     GPLv2+
  * Text Domain: cf-paypal-pro
  * Domain Path: /languages
  */
 
 /**
- * Copyright (c) 2015 Josh Pollock for CalderaWP LLC (email : Josh@CalderaWP.com) for CalderaWP LLC
+ * Copyright (c) 2017 Chris Flanagan
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License, version 2 or, at
