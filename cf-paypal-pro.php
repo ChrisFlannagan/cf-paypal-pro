@@ -54,7 +54,7 @@ function cf_paypal_pro_init() {
 
 	if ( ! version_compare( PHP_VERSION, '5.3.0', '>=' ) ) {
 		if ( is_admin() ) {
-			$message = __( sprintf( 'Caldera Forms PayPal Pro requires PHP version 5.3 or later. We strongly recommend PHP 5.6 or later for security and performance reasons. Current version is %2s.',  PHP_VERSION ), 'cf-ga' );
+			$message = __( sprintf( 'Caldera Forms PayPal Pro requires PHP version 5.3 or later. We strongly recommend PHP 5.6 or later for security and performance reasons. Current version is %2s.',  PHP_VERSION ), 'cf-paypal-pro' );
 			echo caldera_warnings_dismissible_notice( $message, true, 'activate_plugins', 'cf-paypal-pro' );
 		}
 	} else {
