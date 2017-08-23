@@ -29,6 +29,20 @@ function cf_paypal_pro_fields() {
 			)
 		), **/
 		array(
+			'id'       => 'cf-paypal-pro-currency',
+			'label'    => __( 'Currency', 'cf-paypal-pro' ),
+			'required' => false,
+			'type'     => 'dropdown',
+			'options'  => array(
+				'USD' => __( 'USD', 'cf-paypal-pro' ),
+				'CAD' => __( 'CAD', 'cf-paypal-pro' ),
+				'EUR' => __( 'EUR', 'cf-paypal-pro' ),
+				'GBP' => __( 'GBP', 'cf-paypal-pro' ),
+				'JPY' => __( 'JPY', 'cf-paypal-pro' ),
+				'AUD' => __( 'AUD', 'cf-paypal-pro' ),
+			)
+		),
+		array(
 			'id'    => 'amount',
 			'label' => __( 'Price', 'cf-paypal-pro' ),
 		),

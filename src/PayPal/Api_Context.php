@@ -41,6 +41,28 @@ class Api_Context {
 		}
 	}
 
+	/**
+	 * @param $data_object \Caldera_Forms_Processor_Get_Data
+	 *
+	 * @return string
+	 */
+	public function prepare_currency( $data_object ) {
+		if ( null !== $data_object->get_value( 'cf-paypal-pro-currency' ) ) {
+			return $data_object->get_value( 'cf-paypal-pro-currency' );
+		}
+
+		return 'USD';
+	}
+
+	public function prepare_expiration_year( $year ) {
+		$size = strlen( $year );
+		if ( $size === 2 ) {
+			return '20' . $year;
+		}
+
+		return $year;
+	}
+
 	public function get_context() {
 		return $this->context;
 	}

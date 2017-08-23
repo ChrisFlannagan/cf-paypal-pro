@@ -22,9 +22,10 @@ class Process_Classic {
 		if ( ! $data_object->get_value( 'sandbox' ) ) {
 			$auth->set_live();
 		}
+		$currency = $auth->prepare_currency( $data_object );
 
 		$paymentDetails = new PaymentDetailsType();
-		$paymentDetails->OrderTotal = new BasicAmountType('USD', $_POST['amount']);
+		$paymentDetails->OrderTotal = new BasicAmountType( (String)$currency, floatval( $data_object->get_value( 'amount' ) ) );
 
 		$personName = new PersonNameType();
 		$personName->FirstName = $data_object->get_value( 'cardholderFirstName' );
@@ -36,9 +37,9 @@ class Process_Classic {
 
 		$cardDetails = new CreditCardDetailsType();
 		$cardDetails->CreditCardNumber = preg_replace("/[^0-9]/","", $data_object->get_value( 'card_number' ) );
-		$cardDetails->CreditCardType = $data_object->get_value( 'type_of_card' );
+		$cardDetails->CreditCardType = $auth->prepare_card_type( $data_object->get_value( 'type_of_card' ) );
 		$cardDetails->ExpMonth = $data_object->get_value( 'card_exp_month' );
-		$cardDetails->ExpYear = '20' . $data_object->get_value( 'card_exp_year' );
+		$cardDetails->ExpYear = $auth->prepare_expiration_year( $data_object->get_value( 'card_exp_year' ) );
 		$cardDetails->CVV2 = $data_object->get_value( 'card_cvc' );
 		$cardDetails->CardOwner = $payer;
 
@@ -54,9 +55,17 @@ class Process_Classic {
 
 		try {
 
+			/** @var $doDirectPaymentResponse \PayPal\PayPalAPI\DoDirectPaymentResponseType */
 			$doDirectPaymentResponse = $paypalService->DoDirectPayment($doDirectPaymentReq);
 
-		} catch ( \Exception $ex ) {
+			$messages = $doDirectPaymentResponse->Errors;
+			if ( is_array( $messages ) && ! empty( $messages ) ) {
+				foreach ( $messages as $message ) {
+					$data_object->add_error( __( $message->LongMessage, 'cf-paypal-pro' ) );
+				}
+			}
+
+		} catch ( \PayPal\Exception\PayPalConnectionException $ex ) {
 			$data_object->add_error( __( 'There Was An Error With Your Card Or Billing Information', 'cf-paypal-pro' ) );
 		}
 

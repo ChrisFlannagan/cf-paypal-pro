@@ -21,6 +21,7 @@ class Process_Rest {
 		if ( ! $data_object->get_value( 'sandbox' ) ) {
 			$auth->set_live();
 		}
+		$currency = $auth->prepare_currency( $data_object );
 
 		$order_id = uniqid();
 
@@ -28,7 +29,7 @@ class Process_Rest {
 		$card->setType( $data_object->get_value( 'type_of_card' ) )
 		     ->setNumber( preg_replace("/[^0-9]/","", $data_object->get_value( 'card_number' ) ) )
 		     ->setExpireMonth( $data_object->get_value( 'card_exp_month' ) )
-		     ->setExpireYear( '20' . $data_object->get_value( 'card_exp_year' ) )
+		     ->setExpireYear(  $auth->prepare_expiration_year( $data_object->get_value( 'card_exp_year' ) ) )
 		     ->setCvv2( $data_object->get_value( 'card_cvc' ) )
 		     ->setFirstName( $data_object->get_value( 'cardholderFirstName' ) )
 			 ->setBillingCountry( $data_object->get_value( 'card_country' ) )
@@ -44,7 +45,7 @@ class Process_Rest {
 		$item1 = new Item();
 		$item1->setName( $form['name'] )
 		      ->setDescription( 'PayPal Credit Card Payment' )
-		      ->setCurrency( 'USD' )
+		      ->setCurrency( $currency )
 		      ->setQuantity( 1 )
 		      ->setPrice( floatval( $data_object->get_value( 'amount' ) ) );
 

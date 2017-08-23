@@ -71,7 +71,7 @@ function CFPPP( config, $ ){
                         sandbox_secret: sandbox_secret,
                         classic_username: classic_username,
                         classic_pass: classic_pass,
-                        classic_signature: classic_signature
+                        classic_signature: classic_signature,
                         classic_sandbox_username: classic_sandbox_username,
                         classic_sandbox_pass: classic_sandbox_pass,
                         classic_sandbox_signature: classic_sandbox_signature
