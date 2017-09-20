@@ -1,0 +1,32 @@
+#cf-paypal-pro-feedback {
+    display: inline-block;
+    margin-left: -12px;
+    margin-bottom: 6px;
+}
+
+#cf-paypal-pro-feedback p {
+    padding: 4px;
+}
+
+.cf-paypal-pro-help-div {
+    padding: 15px;
+    background: #FFF;
+    margin-bottom: 15px;
+}
+
+.cf-paypal-pro-soap-help-div {
+    margin-top: 25px;
+}
+
+.cf-paypal-pro-help-div > .help-list {
+    display: none;
+    padding-left: 20px;
+}
+
+.cf-paypal-pro-help-div > .help-list > li {
+    list-style-type: disc;
+}
+
+.cf-paypal-pro-help-div img {
+    max-width: 450px;
+}
