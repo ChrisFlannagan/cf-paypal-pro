@@ -38,7 +38,7 @@ class Menu {
 			\Caldera_Forms::PLUGIN_SLUG,
 			__( 'PayPal Pro', 'cf-paypal-pro' ),
 			__( 'PayPal Pro', 'cf-paypal-pro' ),
-			\Caldera_Forms::get_manage_cap(),
+			\Caldera_Forms::get_manage_cap( 'cf-paypal-pro' ),
 			$this->menu_slug,
 			array( $this, 'render_admin' ) );
 	}

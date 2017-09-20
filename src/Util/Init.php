@@ -19,8 +19,8 @@ class Init {
 			"name"				=>	__( 'PayPal Pro for Caldera Forms', 'cf-paypal-pro'),
 			"description"		=>	__( 'PayPal Pro for Caldera Forms', 'cf-paypal-pro'),
 			"icon"				=>	CF_PAYPAL_PRO_URL . "icon.png",
-			"author"			=>	'Caldera Labs',
-			"author_url"		=>	'https://Calderaforms.com',
+			"author"			=>	'Chris Flanagan',
+			"author_url"		=>	'https://whoischris.com',
 
 			"template"			=>	CF_PAYPAL_PRO_PATH . "includes/config.php",
 

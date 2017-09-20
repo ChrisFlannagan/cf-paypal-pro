@@ -1,18 +1,18 @@
 <?php
 /**
  * Plugin Name: PayPal Pro for Caldera Forms
- * Plugin URI:  https://CalderaWP.com/downloads/paypal-pro-for-caldera-forms
+ * Plugin URI:  https://CalderaForms.com/downloads/paypal-pro-for-caldera-forms
  * Description: PayPal Pro for Caldera Forms
  * Version: 1.0
- * Author:      Caldera Labs
- * Author URI:  https://Calderaforms.com
+ * Author:      Chris Flanagan
+ * Author URI:  https://whoischris.com
  * License:     GPLv2+
  * Text Domain: cf-paypal-pro
  * Domain Path: /languages
  */
 
 /**
- * Copyright (c) 2015 Josh Pollock for CalderaWP LLC (email : Josh@CalderaWP.com) for CalderaWP LLC
+ * Copyright (c) 2017 Chris Flanagan
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License, version 2 or, at
@@ -54,7 +54,7 @@ function cf_paypal_pro_init() {
 
 	if ( ! version_compare( PHP_VERSION, '5.3.0', '>=' ) ) {
 		if ( is_admin() ) {
-			$message = __( sprintf( 'Caldera Forms PayPal Pro requires PHP version 5.3 or later. We strongly recommend PHP 5.6 or later for security and performance reasons. Current version is %2s.',  PHP_VERSION ), 'cf-ga' );
+			$message = __( sprintf( 'Caldera Forms PayPal Pro requires PHP version 5.3 or later. We strongly recommend PHP 5.6 or later for security and performance reasons. Current version is %2s.',  PHP_VERSION ), 'cf-paypal-pro' );
 			echo caldera_warnings_dismissible_notice( $message, true, 'activate_plugins', 'cf-paypal-pro' );
 		}
 	} else {
