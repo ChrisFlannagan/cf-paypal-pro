@@ -1,45 +1,45 @@
 <?php
 return array(
-	'_last_updated' => 'Thu, 21 Sep 2017 23:43:29 +0000',
-	'ID' => 'update-field-type',
+	'_last_updated' => 'Fri, 22 Sep 2017 17:36:38 +0000',
+	'ID' => 'paypal-sample-form',
 	'cf_version' => '1.5.6.1',
-	'name' => 'update field type',
+	'name' => 'PayPal Sample Form',
 	'scroll_top' => 0,
-	'success' => 'Form has been successfully submitted. Thank you.			',
+	'success' => 'Form has been successfully submitted. Thank you.						',
 	'db_support' => 1,
-	'pinned' => 1,
+	'pinned' => 0,
 	'hide_form' => 1,
 	'check_honey' => 1,
-	'avatar_field' => NULL,
+	'avatar_field' => '',
 	'form_ajax' => 1,
 	'custom_callback' => '',
 	'layout_grid' =>
 		array(
 			'fields' =>
 				array(
-					'first_name' => '1:1',
-					'last_name' => '1:2',
-					'first_name_on_card' => '2:1',
-					'last_name_on_card' => '2:2',
-					'fld_4502358' => '3:1',
-					'address_line_1' => '4:1',
-					'address_line_2' => '4:1',
-					'city' => '5:1',
-					'zip_code' => '5:2',
-					'state_province' => '5:3',
-					'card_number' => '6:1',
-					'fld_1197779' => '6:2',
-					'expiration_date' => '7:1',
-					'type_of_card' => '7:2',
-					'fld_4824057' => '8:1',
+					'fld_8141437' => '1:1',
+					'fld_264963' => '1:2',
+					'fld_2810404' => '2:1',
+					'fld_4213451' => '2:2',
+					'fld_1396494' => '3:1',
+					'fld_1579640' => '4:1',
+					'fld_1884490' => '4:1',
+					'fld_3796314' => '5:1',
+					'fld_5912547' => '5:2',
+					'fld_5184858' => '5:3',
+					'fld_4174260' => '6:1',
+					'fld_7112790' => '6:2',
+					'fld_7098987' => '7:1',
+					'fld_4937781' => '7:2',
+					'fld_8530736' => '8:1',
 				),
 			'structure' => '6:6|6:6|12|12|6:4:2|8:4|6:6|12',
 		),
 	'fields' =>
 		array(
-			'first_name' =>
+			'fld_8141437' =>
 				array(
-					'ID' => 'first_name',
+					'ID' => 'fld_8141437',
 					'type' => 'text',
 					'label' => 'First Name',
 					'slug' => 'first_name',
@@ -47,20 +47,19 @@ return array(
 						array(
 							'type' => '',
 						),
-					'required' => 1,
 					'caption' => '',
 					'config' =>
 						array(
 							'custom_class' => '',
 							'placeholder' => '',
-							'default' => '{user:first_name}',
+							'default' => '',
 							'type_override' => 'text',
 							'mask' => '',
 						),
 				),
-			'last_name' =>
+			'fld_264963' =>
 				array(
-					'ID' => 'last_name',
+					'ID' => 'fld_264963',
 					'type' => 'text',
 					'label' => 'Last Name',
 					'slug' => 'last_name',
@@ -68,20 +67,19 @@ return array(
 						array(
 							'type' => '',
 						),
-					'required' => 1,
 					'caption' => '',
 					'config' =>
 						array(
 							'custom_class' => '',
 							'placeholder' => '',
-							'default' => '{user:last_name}',
+							'default' => '',
 							'type_override' => 'text',
 							'mask' => '',
 						),
 				),
-			'first_name_on_card' =>
+			'fld_2810404' =>
 				array(
-					'ID' => 'first_name_on_card',
+					'ID' => 'fld_2810404',
 					'type' => 'text',
 					'label' => 'First Name On Card',
 					'slug' => 'first_name_on_card',
@@ -95,14 +93,14 @@ return array(
 						array(
 							'custom_class' => '',
 							'placeholder' => '',
-							'default' => '%first_name%',
+							'default' => '',
 							'type_override' => 'text',
 							'mask' => '',
 						),
 				),
-			'last_name_on_card' =>
+			'fld_4213451' =>
 				array(
-					'ID' => 'last_name_on_card',
+					'ID' => 'fld_4213451',
 					'type' => 'text',
 					'label' => 'Last Name On Card',
 					'slug' => 'last_name_on_card',
@@ -116,14 +114,14 @@ return array(
 						array(
 							'custom_class' => '',
 							'placeholder' => '',
-							'default' => '%last_name%',
+							'default' => '',
 							'type_override' => 'text',
 							'mask' => '',
 						),
 				),
-			'fld_4502358' =>
+			'fld_1396494' =>
 				array(
-					'ID' => 'fld_4502358',
+					'ID' => 'fld_1396494',
 					'type' => 'email',
 					'label' => 'Email',
 					'slug' => 'email',
@@ -140,9 +138,9 @@ return array(
 							'default' => '',
 						),
 				),
-			'address_line_1' =>
+			'fld_1579640' =>
 				array(
-					'ID' => 'address_line_1',
+					'ID' => 'fld_1579640',
 					'type' => 'text',
 					'label' => 'Address Line 1',
 					'slug' => 'address_line_1',
@@ -150,6 +148,7 @@ return array(
 						array(
 							'type' => '',
 						),
+					'required' => 1,
 					'caption' => '',
 					'config' =>
 						array(
@@ -160,9 +159,9 @@ return array(
 							'mask' => '',
 						),
 				),
-			'address_line_2' =>
+			'fld_1884490' =>
 				array(
-					'ID' => 'address_line_2',
+					'ID' => 'fld_1884490',
 					'type' => 'text',
 					'label' => 'Address Line 2',
 					'slug' => 'address_line_2',
@@ -180,9 +179,9 @@ return array(
 							'mask' => '',
 						),
 				),
-			'city' =>
+			'fld_3796314' =>
 				array(
-					'ID' => 'city',
+					'ID' => 'fld_3796314',
 					'type' => 'text',
 					'label' => 'City',
 					'slug' => 'city',
@@ -190,6 +189,7 @@ return array(
 						array(
 							'type' => '',
 						),
+					'required' => 1,
 					'caption' => '',
 					'config' =>
 						array(
@@ -200,9 +200,9 @@ return array(
 							'mask' => '',
 						),
 				),
-			'zip_code' =>
+			'fld_5912547' =>
 				array(
-					'ID' => 'zip_code',
+					'ID' => 'fld_5912547',
 					'type' => 'text',
 					'label' => 'Zip Code',
 					'slug' => 'zip_code',
@@ -221,25 +221,26 @@ return array(
 							'mask' => '',
 						),
 				),
-			'state_province' =>
+			'fld_5184858' =>
 				array(
-					'ID' => 'state_province',
+					'ID' => 'fld_5184858',
 					'type' => 'states',
-					'label' => 'State/ Province',
-					'slug' => 'state_province',
+					'label' => 'State/Province',
+					'slug' => 'stateprovince',
 					'conditions' =>
 						array(
 							'type' => '',
 						),
+					'required' => 1,
 					'caption' => '',
 					'config' =>
 						array(
 							'custom_class' => '',
 						),
 				),
-			'card_number' =>
+			'fld_4174260' =>
 				array(
-					'ID' => 'card_number',
+					'ID' => 'fld_4174260',
 					'type' => 'credit_card_number',
 					'label' => 'Card Number',
 					'slug' => 'card_number',
@@ -257,16 +258,17 @@ return array(
 							'exp' => '',
 						),
 				),
-			'fld_1197779' =>
+			'fld_7112790' =>
 				array(
-					'ID' => 'fld_1197779',
+					'ID' => 'fld_7112790',
 					'type' => 'credit_card_cvc',
-					'label' => 'Card CVC/CVV',
-					'slug' => 'card_cvc',
+					'label' => 'CVC/CVV',
+					'slug' => 'cvccvv',
 					'conditions' =>
 						array(
 							'type' => '',
 						),
+					'required' => 1,
 					'caption' => '',
 					'config' =>
 						array(
@@ -276,9 +278,9 @@ return array(
 							'credit_card_field' => '',
 						),
 				),
-			'expiration_date' =>
+			'fld_7098987' =>
 				array(
-					'ID' => 'expiration_date',
+					'ID' => 'fld_7098987',
 					'type' => 'credit_card_exp',
 					'label' => 'Expiration Date',
 					'slug' => 'expiration_date',
@@ -295,16 +297,17 @@ return array(
 							'default' => '',
 						),
 				),
-			'type_of_card' =>
+			'fld_4937781' =>
 				array(
-					'ID' => 'type_of_card',
+					'ID' => 'fld_4937781',
 					'type' => 'dropdown',
-					'label' => 'Type of Card',
-					'slug' => 'type_of_card',
+					'label' => 'Card Type',
+					'slug' => 'card_type',
 					'conditions' =>
 						array(
 							'type' => '',
 						),
+					'required' => 1,
 					'caption' => '',
 					'config' =>
 						array(
@@ -318,28 +321,28 @@ return array(
 							'orderby_tax' => 'name',
 							'orderby_post' => 'name',
 							'order' => 'ASC',
-							'default' => 'opt154253',
+							'default' => 'opt758130',
 							'option' =>
 								array(
-									'opt154253' =>
+									'opt758130' =>
 										array(
 											'calc_value' => 'visa',
 											'value' => 'visa',
 											'label' => 'visa',
 										),
-									'opt1342764' =>
+									'opt1753366' =>
 										array(
 											'calc_value' => 'mastercard',
 											'value' => 'mastercard',
 											'label' => 'mastercard',
 										),
-									'opt2333345' =>
+									'opt2500518' =>
 										array(
 											'calc_value' => 'amex',
 											'value' => 'amex',
 											'label' => 'amex',
 										),
-									'opt4063894' =>
+									'opt3476076' =>
 										array(
 											'calc_value' => 'discover',
 											'value' => 'discover',
@@ -348,9 +351,9 @@ return array(
 								),
 						),
 				),
-			'fld_4824057' =>
+			'fld_8530736' =>
 				array(
-					'ID' => 'fld_4824057',
+					'ID' => 'fld_8530736',
 					'type' => 'button',
 					'label' => 'Submit Payment',
 					'slug' => 'submit_payment',
@@ -381,14 +384,14 @@ return array(
 			'email_type' => 'html',
 			'recipients' => '',
 			'bcc_to' => '',
-			'email_subject' => 'update field type',
+			'email_subject' => 'PayPal Sample Form',
 			'email_message' => '{summary}',
 		),
 	'processors' =>
 		array(
-			'fp_43339419' =>
+			'fp_13930940' =>
 				array(
-					'ID' => 'fp_43339419',
+					'ID' => 'fp_13930940',
 					'runtimes' =>
 						array(
 							'insert' => 1,
@@ -396,27 +399,29 @@ return array(
 					'type' => 'cf_paypal_pro',
 					'config' =>
 						array(
-							'sandbox' => 'on',
 							'cf-paypal-pro-restOrClassic' => 'rest',
 							'cf-paypal-pro-currency' => 'USD',
 							'amount' => 99,
 							'cardholderFirstName' => '%first_name_on_card%',
 							'cardholderLastName' => '%last_name_on_card%',
-							'card_number' => '%card_number%',
-							'card_exp' => '%expiration_date%',
-							'card_cvc' => '%card_cvc%',
-							'type_of_card' => '%type_of_card%',
-							'first_name' => '%first_name%',
-							'last_name' => '%last_name%',
-							'customer_email' => 'fld_4502358',
+							'card_number' => 'fld_4174260',
 							'_required_bounds' =>
 								array(
-									0 => 'customer_email',
+									0 => 'card_number',
+									1 => 'card_exp',
+									2 => 'card_cvc',
+									3 => 'customer_email',
 								),
+							'card_exp' => 'fld_7098987',
+							'card_cvc' => 'fld_7112790',
+							'type_of_card' => '%card_type%',
+							'first_name' => '%first_name%',
+							'last_name' => '%last_name%',
+							'customer_email' => 'fld_1396494',
 							'card_address' => '%address_line_1%',
 							'card_address_2' => '%address_line_2%',
 							'card_city' => '%city%',
-							'card_state' => '%state_province%',
+							'card_state' => '%stateprovince%',
 							'card_zip' => '%zip_code%',
 							'card_country' => 'US',
 						),
@@ -428,7 +433,6 @@ return array(
 		),
 	'conditional_groups' =>
 		array(
-			'_open_condition' => '',
 		),
 	'settings' =>
 		array(

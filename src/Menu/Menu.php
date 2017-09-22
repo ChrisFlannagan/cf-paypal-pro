@@ -77,7 +77,7 @@ class Menu {
 
 		if ( isset( $_GET['page'] ) && \Caldera_Forms::PLUGIN_SLUG == $_GET['page'] ) {
 			wp_enqueue_script( 'cf-paypal-pro-nag-js', CF_PAYPAL_PRO_URL . 'assets/nag.js', array( 'jquery' ) );
-        }
+		}
 	}
 
 	/**
@@ -105,28 +105,33 @@ class Menu {
             <form v-on:submit.prevent="onSubmit" v-cloak>
                 <div id="cf-paypal-pro-feedback"></div>
                 <div class="cf-paypal-pro-help-div">
-                    <h3 class="help-title">PayPal REST API Credentials</h3>
+                    <h3 class="help-title"><?php _e( 'PayPal REST API Credentials', 'cf-paypal-pro' ); ?></h3>
                     <p>
-                        To get REST API Credentials login to <a href="https://developer.paypal.com" target="_blank">developer.paypal.com</a> and view instructions:<br />
-                        <a href="#showhide" id="show_hide_cfppp_rest_help">View Instructions for Getting REST API Information</a>
+						<?php _e( 'To get REST API Credentials login to <a href="https://developer.paypal.com" target="_blank">developer.paypal.com</a>
+                        and view instructions:', 'cf-paypal-pro' ); ?><br/>
+                        <a href="#showhide" id="show_hide_cfppp_rest_help"><?php _e( 'View Instructions for Getting REST API
+                            Information', 'cf-paypal-pro' ); ?></a>
                     </p>
                     <ul class="help-list" id="ppp-rest-help">
                         <li>
-                            Click your name in the top right corner and select "Dashboard"
+							<?php _e( 'Click your name in the top right corner and select "Dashboard"', 'cf-paypal-pro' ); ?>
                         </li>
                         <li>
-                            Select "My Apps & Credentials" under the "Dashboard" menu.
+							<?php _e( 'Select "My Apps & Credentials" under the "Dashboard" menu.', 'cf-paypal-pro' ); ?>
                         </li>
                         <li>
-                            Scroll down to the REST API apps section and either click Create App or select an available app.  Name this something related to your website.
+							<?php _e( 'Scroll down to the REST API apps section and either click Create App or select an available
+                            app. Name this something related to your website.', 'cf-paypal-pro' ); ?>
                         </li>
                         <li>
-                            After creating an app it will be available in the list, click it's name and it will provide you with Sandbox details to fill out the form below.
+							<?php _e( 'After creating an app it will be available in the list, click it\'s name and it will provide
+                            you with Sandbox details to fill out the form below.', 'cf-paypal-pro' ); ?>
                         </li>
                         <li>
-                            Click the "Live" option to the right of the app name to get live API information.
+							<?php _e( 'Click the "Live" option to the right of the app name to get live API information.', 'cf-paypal-pro' ); ?>
                             <p>
-                                <img src="<?php echo CF_PAYPAL_PRO_URL; ?>/assets/help-1.jpg" style="width: 100%; height: auto;" />
+                                <img src="<?php echo CF_PAYPAL_PRO_URL; ?>/assets/help-1.jpg"
+                                     style="width: 100%; height: auto;"/>
                             </p>
                         </li>
                     </ul>
@@ -163,32 +168,34 @@ class Menu {
                            id="cf-paypal-pro-sandbox-secret"/>
                 </div>
                 <div class="cf-paypal-pro-help-div cf-paypal-pro-soap-help-div">
-                    <h3>PayPal Classic (SOAP) API Credentials</h3>
+                    <h3><?php _e( 'PayPal Classic (SOAP) API Credentials', 'cf-paypal-pro' ); ?></h3>
                     <p>
-                        To get Classic API Credentials login to <a href="https://www.paypal.com" target="_blank">www.paypal.com</a> and view instructions:<br />
-                        <a href="#showhide" id="show_hide_cfppp_soap_help">View Instructions for Getting Classic API Information</a>
+						<?php _e( 'To get Classic API Credentials login to <a href="https://www.paypal.com" target="_blank">www.paypal.com</a> and view instructions:', 'cf-paypal-pro' ); ?>
+                        <br/>
+                        <a href="#showhide"
+                           id="show_hide_cfppp_soap_help"><?php _e( 'View Instructions for Getting Classic API Information', 'cf-paypal-pro' ); ?></a>
                     </p>
                     <ul class="help-list" id="ppp-soap-help">
                         <li>
-                            <strong>It is important that you have a Business Account with PayPal before using this API method.</strong>
+                            <strong><?php _e( 'It is important that you have a Business Account with PayPal before using this API method.', 'cf-paypal-pro' ); ?></strong>
                         </li>
                         <li>
-                            Click Profile > Then Select "Profile and Settings" from the drop down menu.
+							<?php _e( 'Click Profile > Then Select "Profile and Settings" from the drop down menu.', 'cf-paypal-pro' ); ?>
                         </li>
                         <li>
-                            In the left side navigation menu select "My selling tools."
+							<?php _e( 'In the left side navigation menu select "My selling tools."', 'cf-paypal-pro' ); ?>
                         </li>
                         <li>
-                            In the API Access row click the "Update" option.
+							<?php _e( 'In the API Access row click the "Update" option.', 'cf-paypal-pro' ); ?>
                         </li>
                         <li>
-                            On this page scroll down to "Manage API credentials" and click the link.
+							<?php _e( 'On this page scroll down to "Manage API credentials" and click the link.', 'cf-paypal-pro' ); ?>
                         </li>
                         <li>
-                            From here you will have access to your API information needed to use the Classic SOAP API with PayPal.
+							<?php _e( 'From here you will have access to your API information needed to use the Classic SOAP API with PayPal.', 'cf-paypal-pro' ); ?>
                         </li>
                         <li>
-                            To setup a sandbox account login to <a href="https://developer.paypal.com" target="_blank">developer.paypal.com</a> and go to Dashboard.  Then select "Sandbox Accounts" under the "Dashboard" menu.
+							<?php _e( 'To setup a sandbox account login to <a href="https://developer.paypal.com" target="_blank">developer.paypal.com</a> and go to Dashboard.  Then select "Sandbox Accounts" under the "Dashboard" menu.', 'cf-paypal-pro' ); ?>
                         </li>
                     </ul>
                 </div>

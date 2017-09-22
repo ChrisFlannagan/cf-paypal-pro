@@ -45,33 +45,40 @@ function cf_paypal_pro_fields() {
 		array(
 			'id'    => 'amount',
 			'label' => __( 'Price', 'cf-paypal-pro' ),
+			'required' => true,
 		),
 		array(
 			'id'    => 'cardholderFirstName',
 			'label' => __( 'Cardholder First Name', 'cf-paypal-pro' ),
+			'required' => true,
 		),
 		array(
 			'id'    => 'cardholderLastName',
 			'label' => __( 'Cardholder Last Name', 'cf-paypal-pro' ),
+			'required' => true,
 		),
 		array(
 			'id'    => 'card_number',
 			'label' => __( 'Card Number', 'cf-paypal-pro' ),
 			'allow_types' => 'credit_card_number',
+			'required' => true,
 		),
 		array(
 			'id'    => 'card_exp',
 			'label' => __( 'Expiration Date (mm/yyyy)', 'cf-paypal-pro' ),
 			'allow_types' => 'credit_card_exp',
+			'required' => true,
 		),
 		array(
 			'id'    => 'card_cvc',
 			'label' => __( 'CVV Code', 'cf-paypal-pro' ),
 			'allow_types' => 'credit_card_cvc',
+			'required' => true,
 		),
 		array(
 			'id'    => 'type_of_card',
 			'label' => __( 'Type of Card', 'cf-paypal-pro' ),
+			'required' => true,
 		),
 		array(
 			'id'    => 'first_name',
@@ -166,7 +173,7 @@ function cf_paypal_pro_rest_settings_nag() {
          empty( $settings[ \CF_PayPal_Pro\Menu\Settings::SECRET ] ) ) {
 		?>
         <div class="notice notice-error">
-            <p><?php esc_html_e( 'Before using this processor, you must update the API settings in the Caldera Forms PayPal Pro menu.', 'cf-paypal-pro' ); ?></p>
+            <p><?php esc_html_e( 'Before using this processor, you must update the PayPal REST API settings in the Caldera Forms PayPal Pro menu.', 'cf-paypal-pro' ); ?></p>
         </div>
 
 		<?php
@@ -187,7 +194,7 @@ function cf_paypal_pro_classic_settings_nag() {
          empty( $settings[ \CF_PayPal_Pro\Menu\Settings::SIGNATURE ] ) ) {
 		?>
         <div class="notice notice-error">
-            <p><?php esc_html_e( 'Before using this processor, you must update the API settings in the Caldera Forms PayPal Pro menu.', 'cf-paypal-pro' ); ?></p>
+            <p><?php esc_html_e( 'Before using this processor, you must update the PayPal Classic API settings in the Caldera Forms PayPal Pro menu.', 'cf-paypal-pro' ); ?></p>
         </div>
 
 		<?php
