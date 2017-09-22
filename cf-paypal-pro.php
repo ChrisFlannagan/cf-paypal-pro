@@ -1,10 +1,9 @@
 <?php
 /**
  * Plugin Name: PayPal Pro for Caldera Forms
- * Plugin URI:  https://CalderaForms.com/downloads/paypal-pro-for-caldera-forms
- * Description: PayPal Pro for Caldera Forms
+ * Description: Accept Credit Card Payments with a PayPal Account Through Caldera Forms
  * Version: 1.0
- * Author:      Chris Flanagan
+ * Author:      Chris Flannagan
  * Author URI:  https://whoischris.com
  * License:     GPLv2+
  * Text Domain: cf-paypal-pro
