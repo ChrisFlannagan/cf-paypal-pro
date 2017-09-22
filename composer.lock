@@ -6,6 +6,7 @@
     ],
     "content-hash": "72e73eecd39e2a540285e70d880244f5",
     "packages": [
+
         {
             "name": "calderawp/dismissible-notice",
             "version": "dev-master",
