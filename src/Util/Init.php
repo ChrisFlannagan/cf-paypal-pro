@@ -32,7 +32,7 @@ class Init {
 
 	public static function hook() {
 		add_action( 'caldera_forms_pre_load_processors', [ '\CF_PayPal_Pro\Util\Init', 'register_processor' ] );
-		add_filter( 'caldera_forms_get_form_templates', 'cf_ppp_example_form' );
+		add_filter( 'caldera_forms_get_form_templates', 'cf_paypal_pro_example_form' );
 		add_action( 'caldera_forms_rest_api_pre_init', function( $api ){
 			$api->add_route( new Route() );
 		});

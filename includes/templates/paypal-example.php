@@ -1,16 +1,17 @@
 <?php
 return array(
-	'_last_updated' => 'Wed, 23 Aug 2017 01:53:31 +0000',
-	'ID' => 'paypal-credit-card-payment',
-	'cf_version' => '1.5.0.10',
-	'name' => 'PayPal Credit Card Payment',
+	'_last_updated' => 'Thu, 21 Sep 2017 23:43:29 +0000',
+	'ID' => 'update-field-type',
+	'cf_version' => '1.5.6.1',
+	'name' => 'update field type',
 	'scroll_top' => 0,
-	'description' => '																																																	',
-	'success' => 'Form has been successfully submitted. Thank you.																					',
+	'success' => 'Form has been successfully submitted. Thank you.			',
 	'db_support' => 1,
 	'pinned' => 1,
+	'hide_form' => 1,
 	'check_honey' => 1,
-	'avatar_field' => '',
+	'avatar_field' => NULL,
+	'form_ajax' => 1,
 	'custom_callback' => '',
 	'layout_grid' =>
 		array(
@@ -28,12 +29,11 @@ return array(
 					'state_province' => '5:3',
 					'card_number' => '6:1',
 					'fld_1197779' => '6:2',
-					'expiration_month' => '7:1',
-					'expiration_year' => '7:2',
-					'type_of_card' => '7:3',
+					'expiration_date' => '7:1',
+					'type_of_card' => '7:2',
 					'fld_4824057' => '8:1',
 				),
-			'structure' => '6:6|6:6|12|12|6:4:2|8:4|4:4:4|12',
+			'structure' => '6:6|6:6|12|12|6:4:2|8:4|6:6|12',
 		),
 	'fields' =>
 		array(
@@ -240,7 +240,7 @@ return array(
 			'card_number' =>
 				array(
 					'ID' => 'card_number',
-					'type' => 'text',
+					'type' => 'credit_card_number',
 					'label' => 'Card Number',
 					'slug' => 'card_number',
 					'conditions' =>
@@ -254,14 +254,13 @@ return array(
 							'custom_class' => '',
 							'placeholder' => '',
 							'default' => '',
-							'type_override' => 'text',
-							'mask' => '',
+							'exp' => '',
 						),
 				),
 			'fld_1197779' =>
 				array(
 					'ID' => 'fld_1197779',
-					'type' => 'number',
+					'type' => 'credit_card_cvc',
 					'label' => 'Card CVC/CVV',
 					'slug' => 'card_cvc',
 					'conditions' =>
@@ -274,17 +273,15 @@ return array(
 							'custom_class' => '',
 							'placeholder' => '',
 							'default' => '',
-							'min' => 100,
-							'max' => 99999,
-							'step' => '',
+							'credit_card_field' => '',
 						),
 				),
-			'expiration_month' =>
+			'expiration_date' =>
 				array(
-					'ID' => 'expiration_month',
-					'type' => 'text',
-					'label' => 'Expiration Month',
-					'slug' => 'expiration_month',
+					'ID' => 'expiration_date',
+					'type' => 'credit_card_exp',
+					'label' => 'Expiration Date',
+					'slug' => 'expiration_date',
 					'conditions' =>
 						array(
 							'type' => '',
@@ -294,33 +291,8 @@ return array(
 					'config' =>
 						array(
 							'custom_class' => '',
-							'placeholder' => '',
+							'placeholder' => '  /  ',
 							'default' => '',
-							'type_override' => 'text',
-							'masked' => 1,
-							'mask' => 99,
-						),
-				),
-			'expiration_year' =>
-				array(
-					'ID' => 'expiration_year',
-					'type' => 'text',
-					'label' => 'Expiration Year',
-					'slug' => 'expiration_year',
-					'conditions' =>
-						array(
-							'type' => '',
-						),
-					'required' => 1,
-					'caption' => '',
-					'config' =>
-						array(
-							'custom_class' => '',
-							'placeholder' => '',
-							'default' => '',
-							'type_override' => 'text',
-							'masked' => 1,
-							'mask' => 99,
 						),
 				),
 			'type_of_card' =>
@@ -338,6 +310,7 @@ return array(
 						array(
 							'custom_class' => '',
 							'placeholder' => '',
+							'default_option' => '',
 							'auto_type' => '',
 							'taxonomy' => 'category',
 							'post_type' => 'post',
@@ -350,21 +323,25 @@ return array(
 								array(
 									'opt154253' =>
 										array(
+											'calc_value' => 'visa',
 											'value' => 'visa',
 											'label' => 'visa',
 										),
 									'opt1342764' =>
 										array(
+											'calc_value' => 'mastercard',
 											'value' => 'mastercard',
 											'label' => 'mastercard',
 										),
 									'opt2333345' =>
 										array(
+											'calc_value' => 'amex',
 											'value' => 'amex',
 											'label' => 'amex',
 										),
 									'opt4063894' =>
 										array(
+											'calc_value' => 'discover',
 											'value' => 'discover',
 											'label' => 'discover',
 										),
@@ -399,12 +376,12 @@ return array(
 		array(
 			'on_insert' => 1,
 			'sender_name' => 'Caldera Forms Notification',
-			'sender_email' => 'chris@champoosa.com',
+			'sender_email' => 'dev-email@flywheel.local',
 			'reply_to' => '',
 			'email_type' => 'html',
 			'recipients' => '',
 			'bcc_to' => '',
-			'email_subject' => 'PayPal Credit Card Payment',
+			'email_subject' => 'update field type',
 			'email_message' => '{summary}',
 		),
 	'processors' =>
@@ -421,12 +398,12 @@ return array(
 						array(
 							'sandbox' => 'on',
 							'cf-paypal-pro-restOrClassic' => 'rest',
+							'cf-paypal-pro-currency' => 'USD',
 							'amount' => 99,
 							'cardholderFirstName' => '%first_name_on_card%',
 							'cardholderLastName' => '%last_name_on_card%',
 							'card_number' => '%card_number%',
-							'card_exp_month' => '%expiration_month%',
-							'card_exp_year' => '%expiration_year%',
+							'card_exp' => '%expiration_date%',
 							'card_cvc' => '%card_cvc%',
 							'type_of_card' => '%type_of_card%',
 							'first_name' => '%first_name%',
@@ -460,5 +437,5 @@ return array(
 					'break_point' => 'sm',
 				),
 		),
-	'version' => '1.5.0.10',
+	'version' => '1.5.6.1',
 );

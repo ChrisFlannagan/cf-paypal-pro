@@ -23,6 +23,7 @@ class Process_Classic {
 			$auth->set_live();
 		}
 		$currency = $auth->prepare_currency( $data_object );
+		$expiration = $auth->prepare_expiration( $data_object->get_value( 'card_exp' ) );
 
 		$paymentDetails = new PaymentDetailsType();
 		$paymentDetails->OrderTotal = new BasicAmountType( (String)$currency, floatval( $data_object->get_value( 'amount' ) ) );
@@ -38,8 +39,8 @@ class Process_Classic {
 		$cardDetails = new CreditCardDetailsType();
 		$cardDetails->CreditCardNumber = preg_replace("/[^0-9]/","", $data_object->get_value( 'card_number' ) );
 		$cardDetails->CreditCardType = $auth->prepare_card_type( $data_object->get_value( 'type_of_card' ) );
-		$cardDetails->ExpMonth = $data_object->get_value( 'card_exp_month' );
-		$cardDetails->ExpYear = $auth->prepare_expiration_year( $data_object->get_value( 'card_exp_year' ) );
+		$cardDetails->ExpMonth = $expiration['month'];
+		$cardDetails->ExpYear = $expiration['year'];
 		$cardDetails->CVV2 = $data_object->get_value( 'card_cvc' );
 		$cardDetails->CardOwner = $payer;
 

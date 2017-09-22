@@ -57,18 +57,17 @@ function cf_paypal_pro_fields() {
 		array(
 			'id'    => 'card_number',
 			'label' => __( 'Card Number', 'cf-paypal-pro' ),
+			'allow_types' => 'credit_card_number',
 		),
 		array(
-			'id'    => 'card_exp_month',
-			'label' => __( 'Expiration Month', 'cf-paypal-pro' ),
-		),
-		array(
-			'id'    => 'card_exp_year',
-			'label' => __( 'Expiration Year', 'cf-paypal-pro' ),
+			'id'    => 'card_exp',
+			'label' => __( 'Expiration Date (mm/yyyy)', 'cf-paypal-pro' ),
+			'allow_types' => 'credit_card_exp',
 		),
 		array(
 			'id'    => 'card_cvc',
 			'label' => __( 'CVV Code', 'cf-paypal-pro' ),
+			'allow_types' => 'credit_card_cvc',
 		),
 		array(
 			'id'    => 'type_of_card',
@@ -123,7 +122,7 @@ function cf_paypal_pro_fields() {
 }
 
 
-function cf_ppp_example_form( $forms ) {
+function cf_paypal_pro_example_form( $forms ) {
 	$forms['paypal-pro-single'] = array(
 		'name'     => __( 'PayPal One Time Payment Form Example', 'cf-paypal-pro' ),
 		'template' => include CF_PAYPAL_PRO_PATH . 'includes/templates/paypal-example.php'
@@ -138,7 +137,7 @@ function cf_ppp_example_form( $forms ) {
  *
  * @return array
  */
-function cf_ppp_prepare_meta( $transaction ) {
+function cf_paypal_pro_prepare_meta( $transaction ) {
 	$meta = [];
 
 	if ( is_a( $transaction, '\PayPal\Api\Transaction' ) ) {
@@ -160,14 +159,38 @@ function cf_ppp_prepare_meta( $transaction ) {
  *
  * @since 1.1.0
  */
-function cf_ppp_settings_nag() {
+function cf_paypal_pro_rest_settings_nag() {
 	$settings = \CF_PayPal_Pro\Menu\Settings::get_settings();
-	if ( empty( $settings['apikey'] ) || empty( $settings['secret'] ) ) {
+	?><div id="cf-paypal-pro-rest-nag" style="display:none;"><?php
+	if ( empty( $settings[ \CF_PayPal_Pro\Menu\Settings::APIKEY ] ) ||
+         empty( $settings[ \CF_PayPal_Pro\Menu\Settings::SECRET ] ) ) {
 		?>
         <div class="notice notice-error">
-            <p><?php esc_html_e( 'Before using this processor, you must set the API Key and Secret in the Caldera Forms PayPal Pro menu.', 'cf-paypal-pro' ); ?></p>
+            <p><?php esc_html_e( 'Before using this processor, you must update the API settings in the Caldera Forms PayPal Pro menu.', 'cf-paypal-pro' ); ?></p>
         </div>
 
 		<?php
 	}
+	?></div><?php
+}
+
+/**
+ * Show warning if global settings are not available.
+ *
+ * @since 1.1.0
+ */
+function cf_paypal_pro_classic_settings_nag() {
+	$settings = \CF_PayPal_Pro\Menu\Settings::get_settings();
+	?><div id="cf-paypal-pro-classic-nag" style="display:none;"><?php
+	if ( empty( $settings[ \CF_PayPal_Pro\Menu\Settings::USERNAME ] ) ||
+         empty( $settings[ \CF_PayPal_Pro\Menu\Settings::PASS ] ) ||
+         empty( $settings[ \CF_PayPal_Pro\Menu\Settings::SIGNATURE ] ) ) {
+		?>
+        <div class="notice notice-error">
+            <p><?php esc_html_e( 'Before using this processor, you must update the API settings in the Caldera Forms PayPal Pro menu.', 'cf-paypal-pro' ); ?></p>
+        </div>
+
+		<?php
+	}
+	?></div><?php
 }

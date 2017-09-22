@@ -69,13 +69,14 @@ class Api_Classic {
 		}
 	}
 
-	public function prepare_expiration_year( $year ) {
-		$size = strlen( $year );
-		if ( $size === 2 ) {
-			return '20' . $year;
-		}
+	public function prepare_expiration( $expiration_date ) {
+		$exp = explode( '/', $expiration_date );
+		$exp = [
+			'month' => trim( $exp[0] ),
+			'year' => trim( strlen( $exp['1'] ) === 2 ? '20' . $exp[1] : $exp[1] ),
+		];
 
-		return $year;
+		return $exp;
 	}
 
 	public static function instance() {

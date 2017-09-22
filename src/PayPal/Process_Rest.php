@@ -22,14 +22,15 @@ class Process_Rest {
 			$auth->set_live();
 		}
 		$currency = $auth->prepare_currency( $data_object );
+		$expiration = $auth->prepare_expiration( $data_object->get_value( 'card_exp' ) );
 
 		$order_id = uniqid();
 
 		$card = new PaymentCard();
 		$card->setType( $data_object->get_value( 'type_of_card' ) )
 		     ->setNumber( preg_replace("/[^0-9]/","", $data_object->get_value( 'card_number' ) ) )
-		     ->setExpireMonth( $data_object->get_value( 'card_exp_month' ) )
-		     ->setExpireYear(  $auth->prepare_expiration_year( $data_object->get_value( 'card_exp_year' ) ) )
+		     ->setExpireMonth( $expiration['month'] )
+		     ->setExpireYear( $expiration['year'] )
 		     ->setCvv2( $data_object->get_value( 'card_cvc' ) )
 		     ->setFirstName( $data_object->get_value( 'cardholderFirstName' ) )
 			 ->setBillingCountry( $data_object->get_value( 'card_country' ) )
@@ -72,7 +73,7 @@ class Process_Rest {
 			$payment->create( $auth->get_context() );
 
 			if ( 'approved' == $payment->getState() ) {
-				$transdata[ $proccesid ]['meta'] = cf_ppp_prepare_meta( $payment->getTransactions()[0] );
+				$transdata[ $proccesid ]['meta'] = cf_paypal_pro_prepare_meta( $payment->getTransactions()[0] );
 			} else {
 				$data_object->add_error( __( 'Your Card Was Not Approved', 'cf-paypal-pro' ) );
 			}

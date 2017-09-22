@@ -71,9 +71,13 @@ class Menu {
 				)
 			) );
 
-			wp_enqueue_script( 'cf-paypal-pro-help-js', CF_PAYPAL_PRO_URL . '/assets/help.js', array( 'jquery' ) );
-			wp_enqueue_style( 'cf-paypal-pro-help-css', CF_PAYPAL_PRO_URL . '/assets/help.css' );
+			wp_enqueue_script( 'cf-paypal-pro-help-js', CF_PAYPAL_PRO_URL . 'assets/help.js', array( 'jquery' ) );
+			wp_enqueue_style( 'cf-paypal-pro-help-css', CF_PAYPAL_PRO_URL . 'assets/help.css' );
 		}
+
+		if ( isset( $_GET['page'] ) && \Caldera_Forms::PLUGIN_SLUG == $_GET['page'] ) {
+			wp_enqueue_script( 'cf-paypal-pro-nag-js', CF_PAYPAL_PRO_URL . 'assets/nag.js', array( 'jquery' ) );
+        }
 	}
 
 	/**

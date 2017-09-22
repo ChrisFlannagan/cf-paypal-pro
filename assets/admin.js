@@ -1,3 +1,5 @@
+/** Settings Functionality in Vue.js */
+
 ( function( $ ){
     if( 'object' == typeof  CF_PayPal_Pro ){
         new CFPPP( CF_PayPal_Pro, jQuery );

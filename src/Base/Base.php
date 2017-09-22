@@ -60,40 +60,6 @@ class Base extends \Caldera_Forms_Processor_Payment implements \Caldera_Forms_Pr
 		$data   = $this->data_object->get_values();
 		$fields = $this->data_object->get_fields();
 
-		if ( isset( $config['card_number'] ) && ! empty( $config['card_number'] ) ) {
-
-			$number = $data['card_number'];
-			$number = $number = substr( $number, 0, 4 ) . str_repeat( 'X', strlen( $number ) - 4 );
-			$field  = $fields['card_number']['config_field'];
-			if ( $field ) {
-				\Caldera_Forms::set_field_data( $field, $number, $form );
-			}
-		}
-
-		if ( isset( $config['card_cvc'] ) && ! empty( $config['card_cvc'] ) ) {
-			$number = str_repeat( 'X', strlen( $data['card_cvc'] ) );
-			$field  = $fields['card_cvc']['config_field'];
-			if ( $field ) {
-				\Caldera_Forms::set_field_data( $field, $number, $form );
-			}
-		}
-
-		if ( isset( $config['card_exp_month'] ) && ! empty( $config['card_exp_month'] ) ) {
-			$number = 'xx';
-			$field  = $fields['card_exp_month']['config_field'];
-			if ( $field ) {
-				\Caldera_Forms::set_field_data( $field, $number, $form );
-			}
-		}
-
-		if ( isset( $config['card_exp_year'] ) && ! empty( $config['card_exp_year'] ) ) {
-			$number = 'xx';
-			$field  = $fields['card_exp_year']['config_field'];
-			if ( $field ) {
-				\Caldera_Forms::set_field_data( $field, $number, $form );
-			}
-		}
-
 		if ( ! isset( $transdata[ $proccesid ]['meta'] ) ) {
 			$transdata[ $proccesid ]['meta'] = array();
 		}
