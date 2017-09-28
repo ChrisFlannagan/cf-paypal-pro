@@ -48,14 +48,14 @@ class Process_Rest {
 		      ->setDescription( 'PayPal Credit Card Payment' )
 		      ->setCurrency( $currency )
 		      ->setQuantity( 1 )
-		      ->setPrice( floatval( $data_object->get_value( 'amount' ) ) );
+		      ->setPrice( (float) $data_object->get_value( 'amount' ) );
 
 		$itemList = new ItemList();
 		$itemList->setItems( [ $item1 ] );
 
 		$amount = new Amount();
 		$amount->setCurrency( 'USD' )
-		       ->setTotal( floatval( $data_object->get_value( 'amount' ) ) );
+		       ->setTotal( (float) $data_object->get_value( 'amount' ) );
 
 		$transaction = new Transaction();
 		$transaction->setAmount( $amount )

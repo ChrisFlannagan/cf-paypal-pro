@@ -4,6 +4,7 @@ namespace CF_PayPal_Pro\Base;
 
 use CF_PayPal_Pro\PayPal\Process_Rest;
 use CF_PayPal_Pro\PayPal\Process_Classic;
+use CF_PayPal_Pro\PayPal\Process_Rest_Subscription;
 
 /**
  * Class Base
@@ -76,11 +77,17 @@ class Base extends \Caldera_Forms_Processor_Payment implements \Caldera_Forms_Pr
 	 * @return \Caldera_Forms_Processor_Get_Data
 	 */
 	public function do_payment( array $config, array $form, $proccesid, \Caldera_Forms_Processor_Get_Data $data_object ) {
-		if( 'rest' == $data_object->get_value( 'cf-paypal-pro-restOrClassic' ) ){
+		if( 'rest' == $data_object->get_value( 'cf-paypal-pro-restOrClassic' ) ) {
+
+			if( 'plan' == $data_object->get_value( 'cf-paypal-pro-planOrSingle' ) ) {
+				return Process_Rest_Subscription::do_payment( $config, $form, $proccesid, $data_object );
+			}
+
 			return Process_Rest::do_payment( $config, $form, $proccesid, $data_object );
-		} else {
-			return Process_Classic::do_payment( $config, $form, $proccesid, $data_object );
+
 		}
+
+		return Process_Classic::do_payment( $config, $form, $proccesid, $data_object );
 	}
 
 }

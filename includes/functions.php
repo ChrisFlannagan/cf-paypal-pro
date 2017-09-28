@@ -17,7 +17,7 @@ function cf_paypal_pro_fields() {
 				'rest' => __( 'REST API', 'cf-paypal-pro' ),
 				'classic'   => __( 'Classic API', 'cf-paypal-pro' ),
 			)
-		), /** add this when we want to integrate billing
+		),
 		array(
 			'id'       => 'cf-paypal-pro-planOrSingle',
 			'label'    => __( 'One time payment or subscription?', 'cf-paypal-pro' ),
@@ -27,7 +27,7 @@ function cf_paypal_pro_fields() {
 				'charge' => __( 'One Time Payment', 'cf-paypal-pro' ),
 				'plan'   => __( 'Subscription Plan', 'cf-paypal-pro' ),
 			)
-		), **/
+		),
 		array(
 			'id'       => 'cf-paypal-pro-currency',
 			'label'    => __( 'Currency', 'cf-paypal-pro' ),
@@ -133,6 +133,11 @@ function cf_paypal_pro_example_form( $forms ) {
 	$forms['paypal-pro-single'] = array(
 		'name'     => __( 'PayPal One Time Payment Form Example', 'cf-paypal-pro' ),
 		'template' => include CF_PAYPAL_PRO_PATH . 'includes/templates/paypal-example.php'
+	);
+
+	$forms['paypal-pro-subscription'] = array(
+		'name'     => __( 'PayPal Subscription Payment Form Example', 'cf-paypal-pro' ),
+		'template' => include CF_PAYPAL_PRO_PATH . 'includes/templates/subscription-example.php'
 	);
 
 	return $forms;
