@@ -1,4 +1,10 @@
 <?php
+/**
+ * Test Buyer
+ *
+ * support-buyer@homebrewchatter.com
+ * 4032 0351 7651 6870 - 04/2021
+ */
 
 namespace CF_PayPal_Pro\PayPal;
 
@@ -101,9 +107,9 @@ class Process_Rest_Subscription {
 		$expiration = $auth->prepare_expiration( $data_object->get_value( 'card_exp' ) );
 
 		$agreement = new Agreement();
-		$agreement->setName( 'DPRP' . $order_id )
+		$agreement->setName( 'DPRP' )
 		          ->setDescription( 'Payment with credit Card' )
-		          ->setStartDate( '2019-06-17T9:45:04Z' );
+		          ->setStartDate( '2017-10-17T9:45:04Z' );
 
 		$new_plan = new Plan();
 		$new_plan->setId( $plan->getId() );
