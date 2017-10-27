@@ -14,18 +14,9 @@ function cf_paypal_pro_fields() {
 			'required' => false,
 			'type'     => 'dropdown',
 			'options'  => array(
-				'rest' => __( 'REST API', 'cf-paypal-pro' ),
-				'classic'   => __( 'Classic API', 'cf-paypal-pro' ),
-			)
-		),
-		array(
-			'id'       => 'cf-paypal-pro-planOrSingle',
-			'label'    => __( 'One time payment or subscription?', 'cf-paypal-pro' ),
-			'required' => false,
-			'type'     => 'dropdown',
-			'options'  => array(
-				'charge' => __( 'One Time Payment', 'cf-paypal-pro' ),
-				'plan'   => __( 'Subscription Plan', 'cf-paypal-pro' ),
+				'rest'    => __( 'REST API', 'cf-paypal-pro' ),
+				'classic' => __( 'Classic API', 'cf-paypal-pro' ),
+				'payflow' => __( 'PayFlow Subscription', 'cf-paypal-pro' ),
 			)
 		),
 		array(
@@ -43,41 +34,41 @@ function cf_paypal_pro_fields() {
 			)
 		),
 		array(
-			'id'    => 'amount',
-			'label' => __( 'Price', 'cf-paypal-pro' ),
+			'id'       => 'amount',
+			'label'    => __( 'Price', 'cf-paypal-pro' ),
 			'required' => true,
 		),
 		array(
-			'id'    => 'cardholderFirstName',
-			'label' => __( 'Cardholder First Name', 'cf-paypal-pro' ),
+			'id'       => 'cardholderFirstName',
+			'label'    => __( 'Cardholder First Name', 'cf-paypal-pro' ),
 			'required' => true,
 		),
 		array(
-			'id'    => 'cardholderLastName',
-			'label' => __( 'Cardholder Last Name', 'cf-paypal-pro' ),
+			'id'       => 'cardholderLastName',
+			'label'    => __( 'Cardholder Last Name', 'cf-paypal-pro' ),
 			'required' => true,
 		),
 		array(
-			'id'    => 'card_number',
-			'label' => __( 'Card Number', 'cf-paypal-pro' ),
+			'id'          => 'card_number',
+			'label'       => __( 'Card Number', 'cf-paypal-pro' ),
 			'allow_types' => 'credit_card_number',
-			'required' => true,
+			'required'    => true,
 		),
 		array(
-			'id'    => 'card_exp',
-			'label' => __( 'Expiration Date (mm/yyyy)', 'cf-paypal-pro' ),
+			'id'          => 'card_exp',
+			'label'       => __( 'Expiration Date (mm/yyyy)', 'cf-paypal-pro' ),
 			'allow_types' => 'credit_card_exp',
-			'required' => true,
+			'required'    => true,
 		),
 		array(
-			'id'    => 'card_cvc',
-			'label' => __( 'CVV Code', 'cf-paypal-pro' ),
+			'id'          => 'card_cvc',
+			'label'       => __( 'CVV Code', 'cf-paypal-pro' ),
 			'allow_types' => 'credit_card_cvc',
-			'required' => true,
+			'required'    => true,
 		),
 		array(
-			'id'    => 'type_of_card',
-			'label' => __( 'Type of Card', 'cf-paypal-pro' ),
+			'id'       => 'type_of_card',
+			'label'    => __( 'Type of Card', 'cf-paypal-pro' ),
 			'required' => true,
 		),
 		array(
@@ -156,10 +147,10 @@ function cf_paypal_pro_prepare_meta( $transaction ) {
 
 		$meta = [
 			'Transaction ID' => $transaction->getInvoiceNumber(),
-			'amount' => $transaction->getAmount(),
+			'amount'         => $transaction->getAmount(),
 		];
 
-		$meta[ 'time' ] = time();
+		$meta['time'] = time();
 
 	}
 
@@ -173,9 +164,11 @@ function cf_paypal_pro_prepare_meta( $transaction ) {
  */
 function cf_paypal_pro_rest_settings_nag() {
 	$settings = \CF_PayPal_Pro\Menu\Settings::get_settings();
-	?><div id="cf-paypal-pro-rest-nag" style="display:none;"><?php
+	?>
+    <div id="cf-paypal-pro-rest-nag" style="display:none;"><?php
 	if ( empty( $settings[ \CF_PayPal_Pro\Menu\Settings::APIKEY ] ) ||
-         empty( $settings[ \CF_PayPal_Pro\Menu\Settings::SECRET ] ) ) {
+	     empty( $settings[ \CF_PayPal_Pro\Menu\Settings::SECRET ] )
+	) {
 		?>
         <div class="notice notice-error">
             <p><?php esc_html_e( 'Before using this processor, you must update the PayPal REST API settings in the Caldera Forms PayPal Pro menu.', 'cf-paypal-pro' ); ?></p>
@@ -193,10 +186,12 @@ function cf_paypal_pro_rest_settings_nag() {
  */
 function cf_paypal_pro_classic_settings_nag() {
 	$settings = \CF_PayPal_Pro\Menu\Settings::get_settings();
-	?><div id="cf-paypal-pro-classic-nag" style="display:none;"><?php
+	?>
+    <div id="cf-paypal-pro-classic-nag" style="display:none;"><?php
 	if ( empty( $settings[ \CF_PayPal_Pro\Menu\Settings::USERNAME ] ) ||
-         empty( $settings[ \CF_PayPal_Pro\Menu\Settings::PASS ] ) ||
-         empty( $settings[ \CF_PayPal_Pro\Menu\Settings::SIGNATURE ] ) ) {
+	     empty( $settings[ \CF_PayPal_Pro\Menu\Settings::PASS ] ) ||
+	     empty( $settings[ \CF_PayPal_Pro\Menu\Settings::SIGNATURE ] )
+	) {
 		?>
         <div class="notice notice-error">
             <p><?php esc_html_e( 'Before using this processor, you must update the PayPal Classic API settings in the Caldera Forms PayPal Pro menu.', 'cf-paypal-pro' ); ?></p>
