@@ -1,0 +1,21 @@
+{
+  "name": "paypal-pro-for-caldera-forms",
+  "title": "PayPal Pro for Caldera Forms",
+  "description": "Accept payments and credit cards via PayPal Pro & PayFlow",
+  "version": "1.0",
+  "homepage": "https://calderawp.com",
+  "author": {
+    "name": "Chris Flannagan for CalderaWP LLC",
+    "email": "me@whoischris.com",
+    "url": "https://whoischris.com"
+  },
+  "keywords": [],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ChrisFlannagan/cf-paypal-pro"
+  },
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-contrib-compress": "^1.4.3"
+  }
+}
