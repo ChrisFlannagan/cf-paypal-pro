@@ -1,16 +1,15 @@
 module.exports = function(grunt) {
 
     grunt.initConfig({
-        release: {
+		pkg     : grunt.file.readJSON( 'package.json' ),
+		release: {
             main: {
                 options: {
-                    archive: 'release/cf-paypal-pro.zip'
-                }
-                ,
+					mode: 'zip',
+					archive: 'releases/<%= pkg.name %>-<%= pkg.version %>.zip'
+				},
                 files: [
                     {src: ['cf-paypal-pro.php'], dest: 'cf-paypal-pro/', filter: 'isFile'},
-                    {src: ['banner.png'], dest: 'cf-paypal-pro/', filter: 'isFile'},
-                    {src: ['banner-trans-bg.png'], dest: 'cf-paypal-pro/', filter: 'isFile'},
                     {src: ['readme.txt'], dest: 'cf-paypal-pro/', filter: 'isFile'},
                     {src: ['assets/**'], dest: 'cf-paypal-pro/'},
                     {src: ['includes/**'], dest: 'cf-paypal-pro/'},
@@ -23,6 +22,6 @@ module.exports = function(grunt) {
     });
 
     grunt.loadNpmTasks('grunt-contrib-compress');
-    grunt.registerTask('default', ['release']);
+	grunt.registerTask('default', ['release']);
 
 };
