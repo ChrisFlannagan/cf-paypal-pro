@@ -2,7 +2,7 @@ module.exports = function(grunt) {
 
     grunt.initConfig({
 		pkg     : grunt.file.readJSON( 'package.json' ),
-		release: {
+		compress: {
             main: {
                 options: {
 					mode: 'zip',
@@ -22,6 +22,6 @@ module.exports = function(grunt) {
     });
 
     grunt.loadNpmTasks('grunt-contrib-compress');
-	grunt.registerTask('default', ['release']);
+	grunt.registerTask('default', ['compress']);
 
 };
