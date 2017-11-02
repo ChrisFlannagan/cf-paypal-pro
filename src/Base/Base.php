@@ -89,7 +89,7 @@ class Base extends \Caldera_Forms_Processor_Payment implements \Caldera_Forms_Pr
 			return Process_Classic::do_payment( $config, $form, $proccesid, $data_object );
 		}
 
-		if ( 'payflow' === $method ) {
+		if ( 'payflow' === $method || 'payflow-rec' === $method ) {
 			return Process_PayFlow_Subscription::do_payment( $config, $form, $proccesid, $data_object );
 		}
 

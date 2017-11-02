@@ -247,6 +247,67 @@ class Menu {
                            placeholder="<?php _e( 'Your Sandbox API Signature', 'cf-paypal-pro' ); ?>"
                            id="cf-paypal-pro-classic-sandbox-signature"/>
                 </div>
+                <div class="cf-paypal-pro-help-div cf-paypal-pro-payflow-help-div">
+                    <h3><?php _e( 'PayPal PayFlow API Credentials', 'cf-paypal-pro' ); ?></h3>
+                    <p>
+			            <?php _e( 'To get PayFlow Credentials login to <a href="https://manager.paypal.com" target="_blank">manager.paypal.com</a> and view instructions:', 'cf-paypal-pro' ); ?>
+                        <br/>
+                        <a href="#showhide"
+                           id="show_hide_cfppp_payflow_help"><?php _e( 'View Instructions for Getting PayFlow API Information', 'cf-paypal-pro' ); ?></a>
+                    </p>
+                    <ul class="help-list" id="ppp-payflow-help">
+                        <li>
+                            <strong><?php _e( 'PayFlow is complicated to setup.  If you are here then you probably have access', 'cf-paypal-pro' ); ?></strong>
+                        </li>
+                        <li>
+				            <?php _e( 'After logging into Manager select Account Administration', 'cf-paypal-pro' ); ?>
+                        </li>
+                        <li>
+				            <?php _e( 'Next select Manage Users from the subnavigation."', 'cf-paypal-pro' ); ?>
+                        </li>
+                        <li>
+				            <?php _e( 'Select which user will be used for this system.', 'cf-paypal-pro' ); ?>
+                        </li>
+                        <li>
+				            <?php _e( 'Copy Partner, Merchant Login (Vendor setting on this form) and User Login Name and paste in these settings', 'cf-paypal-pro' ); ?>
+                        </li>
+                        <li>
+				            <?php _e( 'Whatever password is used to log into Manager for that user is set here as well.', 'cf-paypal-pro' ); ?>
+                        </li>
+                    </ul>
+                </div>
+                <div class="caldera-config-group">
+                    <label for="cf-paypal-pro-payflow-vendor">
+			            <?php esc_html_e( 'Vendor', 'cf-paypal-pro' ); ?>
+                    </label>
+                    <input v-model="<?php echo Settings::VENDOR; ?>"
+                           placeholder="<?php _e( 'Vendor (Merchant Login)', 'cf-paypal-pro' ); ?>"
+                           id="cf-paypal-pro-payflow-vendor"/>
+                </div>
+                <div class="caldera-config-group">
+                    <label for="cf-paypal-pro-payflow-partner">
+			            <?php esc_html_e( 'Partner', 'cf-paypal-pro' ); ?>
+                    </label>
+                    <input v-model="<?php echo Settings::PARTNER; ?>"
+                           placeholder="<?php _e( 'Partner', 'cf-paypal-pro' ); ?>"
+                           id="cf-paypal-pro-payflow-partner"/>
+                </div>
+                <div class="caldera-config-group">
+                    <label for="cf-paypal-pro-payflow-user">
+			            <?php esc_html_e( 'User Login Name', 'cf-paypal-pro' ); ?>
+                    </label>
+                    <input v-model="<?php echo Settings::USER; ?>"
+                           placeholder="<?php _e( 'User Login Name', 'cf-paypal-pro' ); ?>"
+                           id="cf-paypal-pro-payflow-user"/>
+                </div>
+                <div class="caldera-config-group">
+                    <label for="cf-paypal-pro-payflow-pass">
+			            <?php esc_html_e( 'Password', 'cf-paypal-pro' ); ?>
+                    </label>
+                    <input v-model="<?php echo Settings::PFPASS; ?>"
+                           placeholder="<?php _e( 'User Password', 'cf-paypal-pro' ); ?>"
+                           id="cf-paypal-pro-payflow-pass"/>
+                </div>
 				<?php submit_button( esc_html__( 'Save' ) ); ?>
                 <div id="cf-paypal-pro-spinner" aria-hidden="true" style="display: none">
                     <img src="<?php echo esc_url( admin_url( 'images/spinner.gif' ) ); ?>"/>

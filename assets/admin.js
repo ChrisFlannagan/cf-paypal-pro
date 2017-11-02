@@ -20,7 +20,11 @@ function CFPPP( config, $ ){
                 classic_signature: '',
                 classic_sandbox_username: '',
                 classic_sandbox_pass: '',
-                classic_sandbox_signature: ''
+                classic_sandbox_signature: '',
+                payflow_vendor: '',
+                payflow_partner: '',
+                payflow_user: '',
+                payflow_pass: ''
             }
         },
         mounted: function () {
@@ -56,6 +60,10 @@ function CFPPP( config, $ ){
                 var classic_sandbox_username = this.classic_sandbox_username;
                 var classic_sandbox_pass = this.classic_sandbox_pass;
                 var classic_sandbox_signature = this.classic_sandbox_signature;
+                var payflow_vendor = this.payflow_vendor;
+                var payflow_partner = this.payflow_partner;
+                var payflow_user = this.payflow_user;
+                var payflow_pass = this.payflow_pass;
                 var $spinner = $( '#cf-paypal-pro-spinner' );
                 var $feedback = $( '#cf-paypal-pro-feedback' );
                 $spinner.show().attr( 'aria-hidden', false );
@@ -76,7 +84,11 @@ function CFPPP( config, $ ){
                         classic_signature: classic_signature,
                         classic_sandbox_username: classic_sandbox_username,
                         classic_sandbox_pass: classic_sandbox_pass,
-                        classic_sandbox_signature: classic_sandbox_signature
+                        classic_sandbox_signature: classic_sandbox_signature,
+                        payflow_vendor: payflow_vendor,
+                        payflow_partner: payflow_partner,
+                        payflow_user: payflow_user,
+                        payflow_pass: payflow_pass
                     },
                     complete: function (r) {
                         self.setSettings( r.responseJSON );
@@ -100,6 +112,10 @@ function CFPPP( config, $ ){
                 this.$set( this, 'classic_sandbox_username', settings.classic_sandbox_username );
                 this.$set( this, 'classic_sandbox_pass', settings.classic_sandbox_pass );
                 this.$set( this, 'classic_sandbox_signature', settings.classic_sandbox_signature );
+                this.$set( this, 'payflow_vendor', settings.payflow_vendor );
+                this.$set( this, 'payflow_partner', settings.payflow_partner );
+                this.$set( this, 'payflow_user', settings.payflow_user );
+                this.$set( this, 'payflow_pass', settings.payflow_pass );
             },
             onSubmit: function () {
                 this.updateSettings();

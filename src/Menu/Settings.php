@@ -22,10 +22,16 @@ class Settings {
 	const SANDBOX_PASS = 'classic_sandbox_pass';
 	const SANDBOX_SIGNATURE = 'classic_sandbox_signature';
 
+	/** PayFlow */
+	const VENDOR = 'payflow_vendor';
+	const PARTNER = 'payflow_partner';
+	const USER = 'payflow_user';
+	const PFPASS = 'payflow_pass';
+
 	protected static $key = '_caldera_forms_paypal_pro';
 
 	protected static function defaults() {
-		return array(
+		return [
 			self::APIKEY => '',
 			self::SECRET => '',
 			self::SANDBOX_APIKEY => '',
@@ -36,7 +42,11 @@ class Settings {
 			self::SANDBOX_USERNAME => '',
 			self::SANDBOX_PASS => '',
 			self::SANDBOX_SIGNATURE => '',
-		);
+			self::VENDOR,
+			self::PARTNER,
+			self::USER,
+			self::PFPASS,
+		];
 	}
 
 	/****************************
@@ -154,6 +164,54 @@ class Settings {
 	public static function save_classic_sandbox_signature( $signature ){
 		$settings = self::get_settings();
 		$settings[ self::SANDBOX_SIGNATURE ] = strip_tags( $signature );
+		update_option( self::$key, $settings );
+	}
+
+	/****************************
+	 **   PayFlow API Auth      *
+	 ****************************/
+
+	public static function get_payflow_vendor(){
+		$settings = self::get_settings();
+		return $settings[ self::VENDOR ];
+	}
+
+	public static function get_payflow_partner(){
+		$settings = self::get_settings();
+		return $settings[ self::PARTNER ];
+	}
+
+	public static function get_payflow_user(){
+		$settings = self::get_settings();
+		return $settings[ self::USER ];
+	}
+
+	public static function get_payflow_pass(){
+		$settings = self::get_settings();
+		return $settings[ self::PFPASS ];
+	}
+
+	public static function save_payflow_vendor( $vendor ){
+		$settings = self::get_settings();
+		$settings[ self::VENDOR ] = strip_tags( $vendor );
+		update_option( self::$key, $settings );
+	}
+
+	public static function save_payflow_partner( $partner ){
+		$settings = self::get_settings();
+		$settings[ self::PARTNER ] = strip_tags( $partner );
+		update_option( self::$key, $settings );
+	}
+
+	public static function save_payflow_user( $user ){
+		$settings = self::get_settings();
+		$settings[ self::USER ] = strip_tags( $user );
+		update_option( self::$key, $settings );
+	}
+
+	public static function save_payflow_pass( $pass ){
+		$settings = self::get_settings();
+		$settings[ self::PFPASS ] = strip_tags( $pass );
 		update_option( self::$key, $settings );
 	}
 

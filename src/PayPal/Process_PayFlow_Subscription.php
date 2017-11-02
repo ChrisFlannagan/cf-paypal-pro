@@ -3,21 +3,34 @@
 namespace CF_PayPal_Pro\PayPal;
 
 use CF_PayPal_Pro\PayFlow\PayFlow;
+use CF_PayPal_Pro\Menu\Settings;
 
 class Process_PayFlow_Subscription {
 
 	public static function do_payment( array $config, array $form, $proccesid, \Caldera_Forms_Processor_Get_Data $data_object ) {
 		global $transdata;
 
-		$auth = Api_Classic::instance();
-		$PayFlow = new PayFlow( 'chrisflannagan', 'PayPal', 'chrisflannagan', 'Tolkie#1', 'recurring' );
-		$currency   = $auth->prepare_currency( $data_object );
+		$auth     = Api_Classic::instance();
+		$PayFlow  = new PayFlow(
+			Settings::get_payflow_vendor(),
+			Settings::get_payflow_partner(),
+			Settings::get_payflow_user(),
+			Settings::get_payflow_pass(),
+			'recurring'
+		);
+
+		$currency = $auth->prepare_currency( $data_object );
 
 		$PayFlow->setEnvironment( 'TEST' );
 		if ( ! $data_object->get_value( 'sandbox' ) ) {
-			$PayFlow->setEnvironment( 'live' );
+			$PayFlow->setEnvironment( 'LIVE' );
 		}
+
 		$PayFlow->setTransactionType( 'R' );
+		if ( $data_object->get_value( 'restOrClassic' ) == 'payflow' ) {
+			$PayFlow->setTransactionType( 'D' );
+		}
+
 		$PayFlow->setPaymentMethod( 'C' );
 		$PayFlow->setPaymentCurrency( $currency );
 

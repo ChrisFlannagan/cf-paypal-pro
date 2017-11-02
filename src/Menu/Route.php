@@ -88,21 +88,27 @@ class Route implements \Caldera_Forms_API_Route {
 			Settings::save_classic_signature( $signature );
 		}
 
-		$username = $request[ Settings::SANDBOX_USERNAME ];
-		if( $username ){
+		$vendor = $request[ Settings::VENDOR ];
+		if( $vendor ){
 			$status = 201;
-			Settings::save_classic_sandbox_username( $username );
+			Settings::save_payflow_vendor( $vendor );
 		}
-		$pass = $request[ Settings::SANDBOX_PASS ];
-		if( $pass ){
+		$partner = $request[ Settings::PARTNER ];
+		if( $partner ){
 			$status = 201;
-			Settings::save_classic_sandbox_pass( $pass );
+			Settings::save_payflow_partner( $partner );
 		}
-		$signature = $request[ Settings::SANDBOX_SIGNATURE ];
-		if( $signature ){
+		$user = $request[ Settings::USER ];
+		if( $user ){
 			$status = 201;
-			Settings::save_classic_sandbox_signature( $signature );
+			Settings::save_payflow_user( $user );
 		}
+		$pfpass = $request[ Settings::PFPASS ];
+		if( $pfpass ){
+			$status = 201;
+			Settings::save_payflow_pass( $pfpass );
+		}
+
 		return $this->return_settings( $status );
 	}
 	/**

@@ -14,9 +14,10 @@ function cf_paypal_pro_fields() {
 			'required' => false,
 			'type'     => 'dropdown',
 			'options'  => array(
-				'rest'    => __( 'REST API', 'cf-paypal-pro' ),
-				'classic' => __( 'Classic API', 'cf-paypal-pro' ),
-				'payflow' => __( 'PayFlow Subscription', 'cf-paypal-pro' ),
+				'rest'        => __( 'REST API', 'cf-paypal-pro' ),
+				'classic'     => __( 'Classic API', 'cf-paypal-pro' ),
+				'payflow'     => __( 'PayFlow Direct', 'cf-paypal-pro' ),
+				'payflow-rec' => __( 'PayFlow Recurring', 'cf-paypal-pro' ),
 			)
 		),
 		array(
