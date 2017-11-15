@@ -5,18 +5,29 @@ namespace CF_PayPal_Pro\PayPal;
 use CF_PayPal_Pro\PayFlow\PayFlow;
 use CF_PayPal_Pro\Menu\Settings;
 
-class Process_PayFlow_Subscription {
+class Process_PayFlow {
 
 	public static function do_payment( array $config, array $form, $proccesid, \Caldera_Forms_Processor_Get_Data $data_object ) {
 		global $transdata;
 
 		$auth     = Api_Classic::instance();
+
+		$vendor = Settings::get_payflow_vendor();
+		$partner = Settings::get_payflow_partner();
+		$user = Settings::get_payflow_user();
+		$pass = Settings::get_payflow_pass();
+
+		$type_transaction = 'recurring';
+		if ( $data_object->get_value( 'cf-paypal-pro-restOrClassic' ) === 'payflow' ) {
+			$type_transaction = 'single';
+		}
+
 		$PayFlow  = new PayFlow(
-			Settings::get_payflow_vendor(),
-			Settings::get_payflow_partner(),
-			Settings::get_payflow_user(),
-			Settings::get_payflow_pass(),
-			'recurring'
+			$vendor,
+			$partner,
+			$user,
+			$pass,
+			$type_transaction
 		);
 
 		$currency = $auth->prepare_currency( $data_object );
@@ -27,8 +38,8 @@ class Process_PayFlow_Subscription {
 		}
 
 		$PayFlow->setTransactionType( 'R' );
-		if ( $data_object->get_value( 'restOrClassic' ) == 'payflow' ) {
-			$PayFlow->setTransactionType( 'D' );
+		if ( $data_object->get_value( 'cf-paypal-pro-restOrClassic' ) === 'payflow' ) {
+			$PayFlow->setTransactionType( 'S' );
 		}
 
 		$PayFlow->setPaymentMethod( 'C' );
@@ -48,20 +59,18 @@ class Process_PayFlow_Subscription {
 
 		$PayFlow->setCustomerFirstName( $data_object->get_value( 'cardholderFirstName' ) );
 		$PayFlow->setCustomerLastName( $data_object->get_value( 'cardholderLastName' ) );
-		$PayFlow->setCustomerAddress( '589 8th Ave Suite 10' );
-		$PayFlow->setCustomerCity( 'New York' );
-		$PayFlow->setCustomerState( 'NY' );
-		$PayFlow->setCustomerZip( '10018' );
-		$PayFlow->setCustomerCountry( 'US' );
-		$PayFlow->setCustomerPhone( '212-123-1234' );
-		$PayFlow->setCustomerEmail( 'email@gmail.com' );
-		$PayFlow->setPaymentComment( "Name of Caldera Form Here" );
+		$PayFlow->setCustomerCountry( $data_object->get_value( 'card_country' ) );
+		$PayFlow->setCustomerEmail( $data_object->get_value( 'customer_email' ) );
+		$PayFlow->setPaymentComment( $form['name'] );
+
+		$response = [];
 
 		try {
 
 			$process = $PayFlow->processTransaction();
+			$response = $PayFlow->getResponse();
 
-			if ( ! $process ) {
+			if ( ! $process && $response['RESULT'] != '126' ) {
 				$data_object->add_error( json_encode( $PayFlow->getResponse() ) );
 			}
 
@@ -70,9 +79,13 @@ class Process_PayFlow_Subscription {
 		}
 
 
-		$transdata[ $proccesid ]['meta'] = [ 'Transaction ID' => mt_rand() ];
+		$meta = [
+			'Transaction Profile ID' => isset( $response['PROFILEID'] ) ? $response['PROFILEID'] : '',
+			'Transaction PNREF' => isset( $response['PNREF'] ) ? $response['PNREF'] : '',
+			'Transaction RPREF' => isset( $response['RPREF'] ) ? $response['RPREF'] : '',
+		];
 
-		return $data_object;
+		return [ 'meta' => $meta, 'data_object' => $data_object ];
 	}
 
 }

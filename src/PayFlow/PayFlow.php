@@ -104,18 +104,6 @@ class PayFlow {
     // Setup some default values.
     $this->setupDefaults();
   }
-  
-  
-  /**
-   * @uses      Destructor.
-   * @access    Public
-   * @param     None.
-   * @return    None.
-   * @example   unset($obj);
-   */
-  public function __destruct() {
-    unset($this);
-  }
 
 
   /**

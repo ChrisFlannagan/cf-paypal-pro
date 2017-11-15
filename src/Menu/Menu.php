@@ -77,6 +77,7 @@ class Menu {
 
 		if ( isset( $_GET['page'] ) && \Caldera_Forms::PLUGIN_SLUG == $_GET['page'] ) {
 			wp_enqueue_script( 'cf-paypal-pro-nag-js', CF_PAYPAL_PRO_URL . 'assets/nag.js', array( 'jquery' ) );
+			wp_enqueue_script( 'cf-paypal-pro-payflow-js', CF_PAYPAL_PRO_URL . 'assets/payflow.js', array( 'jquery' ) );
 		}
 	}
 

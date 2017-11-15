@@ -4,14 +4,15 @@ namespace CF_PayPal_Pro\Base;
 
 use CF_PayPal_Pro\PayPal\Process_Rest;
 use CF_PayPal_Pro\PayPal\Process_Classic;
-use CF_PayPal_Pro\PayPal\Process_Rest_Subscription;
-use CF_PayPal_Pro\PayPal\Process_PayFlow_Subscription;
+use CF_PayPal_Pro\PayPal\Process_PayFlow;
 
 /**
  * Class Base
  * @package CF_PayPal_Pro\Base
  */
 class Base extends \Caldera_Forms_Processor_Payment implements \Caldera_Forms_Processor_Interface_Payment {
+
+	private $optional_data;
 
 	/**
 	 * @param array $config
@@ -55,18 +56,13 @@ class Base extends \Caldera_Forms_Processor_Payment implements \Caldera_Forms_Pr
 	 */
 	public function processor( array $config, array $form, $proccesid ) {
 		$this->setup_transata( $proccesid );
-		if ( ! is_object( $this->data_object ) ) {
-
-		}
-
-		$data   = $this->data_object->get_values();
-		$fields = $this->data_object->get_fields();
+		global $transdata;
 
 		if ( ! isset( $transdata[ $proccesid ]['meta'] ) ) {
-			$transdata[ $proccesid ]['meta'] = array();
+			$transdata[ $proccesid ]['meta'] = $this->optional_data;
 		}
 
-		return $transdata[ $proccesid ]['meta'];
+		return $this->optional_data;
 	}
 
 	/**
@@ -79,18 +75,22 @@ class Base extends \Caldera_Forms_Processor_Payment implements \Caldera_Forms_Pr
 	 */
 	public function do_payment( array $config, array $form, $proccesid, \Caldera_Forms_Processor_Get_Data $data_object ) {
 		$method = $data_object->get_value( 'cf-paypal-pro-restOrClassic' );
-		$type = $data_object->get_value( 'cf-paypal-pro-planOrSingle' );
+		$return = null;
 
 		if( 'rest' === $method ) {
+			$this->optional_data = [];
 			return Process_Rest::do_payment( $config, $form, $proccesid, $data_object );
 		}
 
 		if( 'classic' === $method ) {
+			$this->optional_data = [];
 			return Process_Classic::do_payment( $config, $form, $proccesid, $data_object );
 		}
 
 		if ( 'payflow' === $method || 'payflow-rec' === $method ) {
-			return Process_PayFlow_Subscription::do_payment( $config, $form, $proccesid, $data_object );
+			$process_data = Process_PayFlow::do_payment( $config, $form, $proccesid, $data_object );
+			$this->optional_data = $process_data['meta'];
+			return $process_data['data_object'];
 		}
 
 		return null;
