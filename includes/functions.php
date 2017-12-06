@@ -186,6 +186,26 @@ function cf_paypal_pro_rest_settings_nag() {
  *
  * @since 1.1.0
  */
+function cf_paypal_pro_rest_sandbox_settings_nag() {
+	$settings = \CF_PayPal_Pro\Menu\Settings::get_settings();
+	?><div id="cf-paypal-pro-rest-sandbox-nag" style="display:none;"><?php
+	if ( empty( $settings[ \CF_PayPal_Pro\Menu\Settings::SANDBOX_APIKEY ] ) ||
+	     empty( $settings[ \CF_PayPal_Pro\Menu\Settings::SANDBOX_SECRET ] ) ) {
+		?>
+        <div class="notice notice-warning">
+            <p><?php esc_html_e( 'Before using this processor in TEST MODE, you must update the PayPal REST API sandbox settings in the Caldera Forms PayPal Pro menu.', 'cf-paypal-pro' ); ?></p>
+        </div>
+
+		<?php
+	}
+	?></div><?php
+}
+
+/**
+ * Show warning if global settings are not available.
+ *
+ * @since 1.1.0
+ */
 function cf_paypal_pro_classic_settings_nag() {
 	$settings = \CF_PayPal_Pro\Menu\Settings::get_settings();
 	?><div id="cf-paypal-pro-classic-nag" style="display:none;"><?php
@@ -195,6 +215,27 @@ function cf_paypal_pro_classic_settings_nag() {
 		?>
         <div class="notice notice-error">
             <p><?php esc_html_e( 'Before using this processor, you must update the PayPal Classic API settings in the Caldera Forms PayPal Pro menu.', 'cf-paypal-pro' ); ?></p>
+        </div>
+
+		<?php
+	}
+	?></div><?php
+}
+
+/**
+ * Show warning if global settings are not available.
+ *
+ * @since 1.1.0
+ */
+function cf_paypal_pro_classic_sandbox_settings_nag() {
+	$settings = \CF_PayPal_Pro\Menu\Settings::get_settings();
+	?><div id="cf-paypal-pro-classic-sandbox-nag" style="display:none;"><?php
+	if ( empty( $settings[ \CF_PayPal_Pro\Menu\Settings::SANDBOX_USERNAME ] ) ||
+	     empty( $settings[ \CF_PayPal_Pro\Menu\Settings::SANDBOX_PASS ] ) ||
+	     empty( $settings[ \CF_PayPal_Pro\Menu\Settings::SANDBOX_SIGNATURE ] ) ) {
+		?>
+        <div class="notice notice-warning">
+            <p><?php esc_html_e( 'Before using this processor in TEST MODE, you must update the PayPal Classic API sandbox settings in the Caldera Forms PayPal Pro menu.', 'cf-paypal-pro' ); ?></p>
         </div>
 
 		<?php
