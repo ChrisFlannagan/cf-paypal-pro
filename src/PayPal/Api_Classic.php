@@ -73,7 +73,7 @@ class Api_Classic {
 		$exp = explode( '/', $expiration_date );
 		$exp = [
 			'month' => trim( $exp[0] ),
-			'year' => trim( strlen( $exp['1'] ) === 2 ? '20' . $exp[1] : $exp[1] ),
+			'year' => strlen( trim( $exp['1'] ) ) === 2 ? '20' . trim( $exp[1] ) : trim( $exp[1] ),
 		];
 
 		return $exp;

@@ -31,7 +31,7 @@
 /**
  * Define constants
  */
-define( 'CF_PAYPAL_PRO_VER', '1.0' );
+define( 'CF_PAYPAL_PRO_VER', '1.0.1' );
 define( 'CF_PAYPAL_PRO_URL',     plugin_dir_url( __FILE__ ) );
 define( 'CF_PAYPAL_PRO_PATH',    dirname( __FILE__ ) . '/' );
 define( 'CF_PAYPAL_PRO_CORE',    dirname( __FILE__ )  );
