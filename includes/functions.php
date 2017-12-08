@@ -122,6 +122,7 @@ function cf_paypal_pro_fields() {
 		array(
 			'id'       => 'card_country',
 			'label'    => __( 'Country Code', 'cf-paypal-pro' ),
+			'desc' => 'PayPal Requires a country code submitted with the credit card billing information.  You can use our pre-built PayPal form template as a start and customize it your way.  Or, create your own form and make sure to include a select field.  We have a country code preset you can use to load the options into your select field.',
 			'required' => true,
 		),
 	);
