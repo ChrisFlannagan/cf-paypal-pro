@@ -129,6 +129,7 @@ function cf_paypal_pro_fields() {
 		[
 			'id'       => 'card_country',
 			'label'    => __( 'Country Code', 'cf-paypal-pro' ),
+			'desc' => 'PayPal Requires a country code submitted with the credit card billing information.  You can use our pre-built PayPal form template as a start and customize it your way.  Or, create your own form and make sure to include a select field.  We have a country code preset you can use to load the options into your select field.',
 			'required' => true,
 		],
 	];
@@ -200,6 +201,26 @@ function cf_paypal_pro_rest_settings_nag() {
  *
  * @since 1.1.0
  */
+function cf_paypal_pro_rest_sandbox_settings_nag() {
+	$settings = \CF_PayPal_Pro\Menu\Settings::get_settings();
+	?><div id="cf-paypal-pro-rest-sandbox-nag" style="display:none;"><?php
+	if ( empty( $settings[ \CF_PayPal_Pro\Menu\Settings::SANDBOX_APIKEY ] ) ||
+	     empty( $settings[ \CF_PayPal_Pro\Menu\Settings::SANDBOX_SECRET ] ) ) {
+		?>
+        <div class="notice notice-warning">
+            <p><?php esc_html_e( 'Before using this processor in TEST MODE, you must update the PayPal REST API sandbox settings in the Caldera Forms PayPal Pro menu.', 'cf-paypal-pro' ); ?></p>
+        </div>
+
+		<?php
+	}
+	?></div><?php
+}
+
+/**
+ * Show warning if global settings are not available.
+ *
+ * @since 1.1.0
+ */
 function cf_paypal_pro_classic_settings_nag() {
 	$settings = \CF_PayPal_Pro\Menu\Settings::get_settings();
 	?>
@@ -221,8 +242,31 @@ function cf_paypal_pro_classic_settings_nag() {
 /**
  * Show warning if global settings are not available.
  *
+ * @since 1.0.1
+ */
+
+function cf_paypal_pro_classic_sandbox_settings_nag() {
+	$settings = \CF_PayPal_Pro\Menu\Settings::get_settings();
+	?><div id="cf-paypal-pro-classic-sandbox-nag" style="display:none;"><?php
+	if ( empty( $settings[ \CF_PayPal_Pro\Menu\Settings::SANDBOX_USERNAME ] ) ||
+	     empty( $settings[ \CF_PayPal_Pro\Menu\Settings::SANDBOX_PASS ] ) ||
+	     empty( $settings[ \CF_PayPal_Pro\Menu\Settings::SANDBOX_SIGNATURE ] ) ) {
+		?>
+        <div class="notice notice-warning">
+            <p><?php esc_html_e( 'Before using this processor in TEST MODE, you must update the PayPal Classic API sandbox settings in the Caldera Forms PayPal Pro menu.', 'cf-paypal-pro' ); ?></p>
+        </div>
+
+		<?php
+	}
+	?></div><?php
+}
+
+/**
+ * Show warning if global settings are not available.
+ *
  * @since 1.1.0
  */
+
 function cf_paypal_pro_payflow_settings_nag() {
 	$settings = \CF_PayPal_Pro\Menu\Settings::get_settings();
 	?>

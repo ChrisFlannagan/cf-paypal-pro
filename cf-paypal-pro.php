@@ -31,19 +31,17 @@
 /**
  * Define constants
  */
-define( 'CF_PAYPAL_PRO_VER', '1.0' );
-define( 'CF_PAYPAL_PRO_URL',     plugin_dir_url( __FILE__ ) );
-define( 'CF_PAYPAL_PRO_PATH',    dirname( __FILE__ ) . '/' );
-define( 'CF_PAYPAL_PRO_CORE',    dirname( __FILE__ )  );
-
-error_log( "loaded" );
+define( 'CF_PAYPAL_PRO_VER', '1.0.1' );
+define( 'CF_PAYPAL_PRO_URL', plugin_dir_url( __FILE__ ) );
+define( 'CF_PAYPAL_PRO_PATH', dirname( __FILE__ ) . '/' );
+define( 'CF_PAYPAL_PRO_CORE', dirname( __FILE__ )  );
 
 /**
  * Default initialization for the plugin:
  * - Registers the default textdomain.
  */
 function cf_paypal_pro_init_text_domain() {
-	load_plugin_textdomain( 'cf-paypal-pro', FALSE, CF_PAYPAL_PRO_PATH . 'languages' );
+	load_plugin_textdomain( 'cf-paypal-pro', false, CF_PAYPAL_PRO_PATH . 'languages' );
 }
 
 add_action( 'plugins_loaded', 'cf_paypal_pro_init' );
@@ -63,3 +61,12 @@ function cf_paypal_pro_init() {
 	}
 
 }
+
+add_filter( 'caldera_forms_field_option_presets', function( $presets ){
+	$presets[ 'country-codes-list' ] = [
+		'name' => __( 'Billing Country', 'cf-paypal-pro' ),
+		'data' => file_get_contents( CF_PAYPAL_PRO_PATH . 'assets/presets-country-codes.txt' ),
+	];
+
+	return $presets;
+});
