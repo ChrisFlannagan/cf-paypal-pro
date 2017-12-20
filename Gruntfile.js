@@ -2,6 +2,28 @@ module.exports = function(grunt) {
 
     grunt.initConfig({
 		pkg     : grunt.file.readJSON( 'package.json' ),
+        replace: {
+            core: {
+                src: [ 'cf-paypal-pro.php' ],
+                overwrite: true,
+                replacements: [{
+                    from: /Version:\s*(.*)/,
+                    to: "Version: <%= pkg.version %>"
+                }, {
+                    from: /define\(\s*'CF_PAYPAL_PRO_VER',\s*'(.*)'\s*\);/,
+                    to: "define( 'CF_PAYPAL_PRO_VER', '<%= pkg.version %>' );"
+                }]
+            },
+            version_reamdme_txt: {
+                src: [ 'readme.txt' ],
+                overwrite: true,
+                replacements: [{
+                    from: /Stable tag: (.*)/,
+                    to: "Stable tag: <%= pkg.version %>"
+                }]
+
+            }
+        },
 		compress: {
             main: {
                 options: {
@@ -22,6 +44,7 @@ module.exports = function(grunt) {
     });
 
     grunt.loadNpmTasks('grunt-contrib-compress');
-	grunt.registerTask('default', ['compress']);
+    grunt.loadNpmTasks('grunt-text-replace');
+	grunt.registerTask('default', ['replace','compress']);
 
 };

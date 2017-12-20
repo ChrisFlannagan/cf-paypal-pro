@@ -33,14 +33,7 @@ function cf_paypal_pro_fields() {
 			'label'    => __( 'Currency', 'cf-paypal-pro' ),
 			'required' => false,
 			'type'     => 'dropdown',
-			'options'  => array(
-				'USD' => __( 'USD', 'cf-paypal-pro' ),
-				'CAD' => __( 'CAD', 'cf-paypal-pro' ),
-				'EUR' => __( 'EUR', 'cf-paypal-pro' ),
-				'GBP' => __( 'GBP', 'cf-paypal-pro' ),
-				'JPY' => __( 'JPY', 'cf-paypal-pro' ),
-				'AUD' => __( 'AUD', 'cf-paypal-pro' ),
-			)
+			'options'  => cf_paypal_pro_currency_codes(),
 		),
 		array(
 			'id'    => 'amount',
@@ -138,6 +131,28 @@ function cf_paypal_pro_example_form( $forms ) {
 
 	return $forms;
 
+}
+
+
+function cf_paypal_pro_currency_codes() {
+    $currency_codes = wp_cache_get( 'cf_paypal_pro_currency_codes_' . CF_PAYPAL_PRO_VER );
+
+    if ( ! $currency_codes ) {
+        $currency_codes = [];
+        $string_codes = file_get_contents( CF_PAYPAL_PRO_PATH . 'assets/preset-currency-codes.txt' );
+        $codes = explode( "\n", $string_codes );
+
+        foreach ( $codes as $code ) {
+	        if ( strpos( $code, '|' ) === false ) {
+		        continue;
+	        }
+
+            $code = explode( '|', $code );
+            $currency_codes[ $code[1] ] = $code[0];
+        }
+    }
+
+    return $currency_codes;
 }
 
 /**

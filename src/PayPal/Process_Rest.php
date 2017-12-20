@@ -54,7 +54,7 @@ class Process_Rest {
 		$itemList->setItems( [ $item1 ] );
 
 		$amount = new Amount();
-		$amount->setCurrency( 'USD' )
+		$amount->setCurrency( $currency )
 		       ->setTotal( floatval( $data_object->get_value( 'amount' ) ) );
 
 		$transaction = new Transaction();
