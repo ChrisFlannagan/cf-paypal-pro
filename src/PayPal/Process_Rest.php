@@ -79,7 +79,8 @@ class Process_Rest {
 			}
 
 		} catch ( PayPalConnectionException $ex ) {
-			$data_object->add_error( __( 'There Was An Error With Your Card Or Billing Information', 'cf-paypal-pro' ) );
+			$data = json_decode( $ex->getData(), true );
+			$data_object->add_error(  $data['message'] . ': ' . $ex->getMessage() );
 		}
 
 
