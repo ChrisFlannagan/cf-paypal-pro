@@ -54,7 +54,7 @@ class Process_Rest {
 		$itemList->setItems( [ $item1 ] );
 
 		$amount = new Amount();
-		$amount->setCurrency( 'USD' )
+		$amount->setCurrency( $currency )
 		       ->setTotal( floatval( $data_object->get_value( 'amount' ) ) );
 
 		$transaction = new Transaction();
@@ -79,7 +79,8 @@ class Process_Rest {
 			}
 
 		} catch ( PayPalConnectionException $ex ) {
-			$data_object->add_error( __( 'There Was An Error With Your Card Or Billing Information', 'cf-paypal-pro' ) );
+			$data = json_decode( $ex->getData(), true );
+			$data_object->add_error( $data['message'] . ': ' . $ex->getMessage() );
 		}
 
 

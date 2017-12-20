@@ -2,7 +2,7 @@
 /**
  * Plugin Name: PayPal Pro for Caldera Forms
  * Description: Accept Credit Card Payments with a PayPal Account Through Caldera Forms
- * Version: 1.0
+ * Version: 1.0.2
  * Author:      Chris Flannagan
  * Author URI:  https://whoischris.com
  * License:     GPLv2+
@@ -31,7 +31,7 @@
 /**
  * Define constants
  */
-define( 'CF_PAYPAL_PRO_VER', '1.0.1' );
+define( 'CF_PAYPAL_PRO_VER', '1.0.2' );
 define( 'CF_PAYPAL_PRO_URL', plugin_dir_url( __FILE__ ) );
 define( 'CF_PAYPAL_PRO_PATH', dirname( __FILE__ ) . '/' );
 define( 'CF_PAYPAL_PRO_CORE', dirname( __FILE__ )  );
