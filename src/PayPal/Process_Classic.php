@@ -67,6 +67,13 @@ class Process_Classic {
 			}
 
 		} catch ( \PayPal\Exception\PayPalConnectionException $ex ) {
+            /**
+             * Runs after the PayPal Pro API throws an exception
+             *
+             * @param string $message API error message
+             * @param \PayPal\Exception\PayPalConnectionException $ex Exception object
+             */
+		    do_action( 'cf_paypal_pro_api_exception', $ex->getMessage(), $ex );
 			$data_object->add_error( __( 'There Was An Error With Your Card Or Billing Information', 'cf-paypal-pro' ) );
 		}
 

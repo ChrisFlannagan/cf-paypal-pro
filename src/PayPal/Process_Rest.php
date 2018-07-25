@@ -79,6 +79,13 @@ class Process_Rest {
 			}
 
 		} catch ( PayPalConnectionException $ex ) {
+            /**
+             * Runs after the PayPal Pro API throws an exception
+             *
+             * @param string $message API error message
+             * @param \PayPal\Exception\PayPalConnectionException $ex Exception object
+             */
+            do_action( 'cf_paypal_pro_api_exception', $ex->getMessage(), $ex );
 			$data = json_decode( $ex->getData(), true );
 			$data_object->add_error( $data['message'] . ': ' . $ex->getMessage() );
 		}
